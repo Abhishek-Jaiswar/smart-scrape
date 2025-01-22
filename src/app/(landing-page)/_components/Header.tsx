@@ -1,18 +1,21 @@
 'use client'
-import Image from 'next/image'
+// import Image from 'next/image'
+import { SiScratch } from "react-icons/si";
 const Header = () => {
 
     return (
         <div className=' container'>
             <div className=' hidden mx-5 md:flex items-center justify-between md:max-w-7xl md:mx-auto py-6'>
                 <div>
-                    <div className='flex items-center gap-2'>
-                        <Image
+                    <div className='flex items-center gap-1'>
+                        {/* <Image
                             src="/logo.png"
                             alt='logo'
                             width={25}
                             height={25}
-                        />
+                        /> */}
+                        <SiScratch className="text-4xl font-bold text-rose-500" />
+
                         <h1 className='text-xl tracking-wider text-neutral-950 font-bold font-mono '>SMARTSCRAPE</h1>
                     </div>
                 </div>
