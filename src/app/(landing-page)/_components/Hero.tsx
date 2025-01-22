@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Globe, Bot, Database, Zap, Code2 } from 'lucide-react';
+import { Star, Globe } from 'lucide-react';
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 function Hero() {
@@ -52,36 +52,6 @@ function Hero() {
                                 Custom Storage
                             </li>
                         </ul>
-                    </div>
-
-                    {/* Feature Highlights */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <Bot className="w-10 h-10 text-blue-500 mx-auto mb-4" />
-                            <h3 className="font-semibold mb-2">AI-Powered Extraction</h3>
-                            <p className="text-gray-600">Smart pattern recognition for accurate data collection</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <Zap className="w-10 h-10 text-blue-500 mx-auto mb-4" />
-                            <h3 className="font-semibold mb-2">Real-time Processing</h3>
-                            <p className="text-gray-600">Lightning-fast data extraction and processing</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                            <Database className="w-10 h-10 text-blue-500 mx-auto mb-4" />
-                            <h3 className="font-semibold mb-2">Structured Output</h3>
-                            <p className="text-gray-600">Clean, organized data in your preferred format</p>
-                        </div>
-                    </div>
-
-                    {/* CTA Section */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-                            Start Scraping Free
-                        </button>
-                        <button className="px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold border border-blue-200 hover:border-blue-300 transition-colors flex items-center gap-2">
-                            <Code2 className="w-5 h-5" />
-                            View Documentation
-                        </button>
                     </div>
                 </div>
             </div>
