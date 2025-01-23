@@ -18,13 +18,29 @@ export const metadata: Metadata = {
   description: "Scrape the world wide web effortlessly",
 };
 
+const appearance = {
+  elements: {
+    formButtonPrimary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-none",
+    card: "bg-background shadow-md",
+    headerTitle: "text-foreground font-bold",
+    headerSubtitle: "text-muted-foreground",
+    socialButtonsBlockButton: "bg-muted text-muted-foreground hover:bg-muted/90",
+    formFieldLabel: "text-foreground",
+    formFieldInput: "bg-background border border-input text-foreground",
+    footerActionLink: "text-primary hover:text-primary/90",
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider afterSignOutUrl={"/sign-in"}>
+    <ClerkProvider
+      appearance={appearance}
+      afterSignOutUrl={"/sign-in"}
+    >
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
