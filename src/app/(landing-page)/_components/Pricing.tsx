@@ -102,7 +102,7 @@ function Pricing() {
                             <p className="text-gray-500 font-mono mb-6">{plan.description}</p>
 
                             <div className="mb-6">
-                                <span className="text-4xl font-mono font-bold">€{plan.price}</span>
+                                <span className="text-4xl font-mono font-bold">₹{plan.price}</span>
                                 <span className="text-gray-500 font-mono ml-2">per user/month</span>
                                 <p className="text-sm font-mono text-gray-500 mt-1">
                                     {billingCycle === 'annual' ? 'billed annually' : 'billed monthly'}
