@@ -3,6 +3,7 @@
 import React from "react"
 import Header from "../_components/Header"
 import Hero from "../_components/Hero"
+import Pricing from "../_components/Pricing"
 
 const Home = () => {
     return (
@@ -14,6 +15,9 @@ const Home = () => {
                 </header>
                 <section className="flex items-center justify-center mt-14">
                     <Hero />
+                </section>
+                <section>
+                    <Pricing />
                 </section>
             </div>
         </main>

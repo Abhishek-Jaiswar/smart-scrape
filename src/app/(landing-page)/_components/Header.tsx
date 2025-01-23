@@ -22,16 +22,30 @@ const Header = () => {
 
                 <nav className="hidden md:block">
                     <ul className="flex items-center justify-center gap-10">
-                        {["Services", "Pricing", "Docs", "Feedback"].map((item) => (
-                            <li key={item}>
-                                <Link
-                                    href={`/${item.toLowerCase()}`}
-                                    className="text-neutral-950 font-medium hover:text-rose-500 transition-colors"
-                                >
-                                    {item}
-                                </Link>
-                            </li>
-                        ))}
+                        <Link
+                            href={"/Services"}
+                            className="text-neutral-950 font-medium hover:text-rose-500 transition-colors"
+                        >
+                            Services
+                        </Link>
+                        <Link
+                            href={"/docs"}
+                            className="text-neutral-950 font-medium hover:text-rose-500 transition-colors"
+                        >
+                            Docs
+                        </Link>
+                        <Link
+                            href={"/pricing"}
+                            className="text-neutral-950 font-medium hover:text-rose-500 transition-colors"
+                        >
+                            Pricing
+                        </Link>
+                        <Link
+                            href={"/help-center"}
+                            className="text-neutral-950 font-medium hover:text-rose-500 transition-colors"
+                        >
+                            Help center
+                        </Link>
                     </ul>
                 </nav>
 
