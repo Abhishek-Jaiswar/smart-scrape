@@ -4,6 +4,7 @@ import React from "react"
 import Header from "../_components/Header"
 import Hero from "../_components/Hero"
 import Pricing from "../_components/Pricing"
+import FAQs from "../_components/FAQs"
 
 const Home = () => {
     return (
@@ -18,6 +19,9 @@ const Home = () => {
                 </section>
                 <section>
                     <Pricing />
+                </section>
+                <section className=" bg-rose-50/30">
+                    <FAQs />
                 </section>
             </div>
         </main>

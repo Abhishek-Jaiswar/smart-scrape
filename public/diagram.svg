@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
+  <!-- Background Circles -->
+  <circle cx="200" cy="200" r="160" fill="#f7faff" />
+  <circle cx="600" cy="200" r="160" fill="#f7faff" />
+  <circle cx="1000" cy="200" r="160" fill="#f7faff" />
+
+  <!-- Connecting Lines -->
+  <line x1="360" y1="200" x2="440" y2="200" stroke="#d3d3d3" stroke-width="2" stroke-dasharray="4" />
+  <line x1="760" y1="200" x2="840" y2="200" stroke="#d3d3d3" stroke-width="2" stroke-dasharray="4" />
+
+  <!-- Center Text Nodes -->
+  <rect x="140" y="170" width="120" height="60" rx="10" fill="#fff" stroke="#d3d3d3" />
+  <rect x="540" y="170" width="120" height="60" rx="10" fill="#fff" stroke="#d3d3d3" />
+  <rect x="940" y="170" width="120" height="60" rx="10" fill="#fff" stroke="#d3d3d3" />
+
+  <text x="200" y="200" font-size="14" text-anchor="middle" fill="#333">Scrape data</text>
+  <text x="200" y="220" font-size="14" text-anchor="middle" fill="#333">from TikTok</text>
+
+  <text x="600" y="200" font-size="14" text-anchor="middle" fill="#333">apify create</text>
+  <text x="600" y="220" font-size="14" text-anchor="middle" fill="#333">my-actor</text>
+
+  <text x="1000" y="200" font-size="14" text-anchor="middle" fill="#333">Request custom</text>
+  <text x="1000" y="220" font-size="14" text-anchor="middle" fill="#333">solution</text>
+
+  <!-- Small Icons Around Nodes -->
+  <circle cx="120" cy="120" r="10" fill="#ffd700" />
+  <circle cx="280" cy="120" r="10" fill="#90ee90" />
+  <circle cx="520" cy="120" r="10" fill="#add8e6" />
+  <circle cx="680" cy="120" r="10" fill="#ffb6c1" />
+  <circle cx="920" cy="120" r="10" fill="#ffa07a" />
+  <circle cx="1080" cy="120" r="10" fill="#d8bfd8" />
+
+  <!-- Example Additional Elements -->
+  <circle cx="200" cy="300" r="10" fill="#add8e6" />
+  <circle cx="600" cy="300" r="10" fill="#ffb6c1" />
+  <circle cx="1000" cy="300" r="10" fill="#ffd700" />
+</svg>
