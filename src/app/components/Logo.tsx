@@ -9,7 +9,7 @@ const Logo = ({
     // iconSize = 20
 }: {
     fontSize?: string,
-    iconSize?: number
+    // iconSize?: number
 }) => {
     return (
         <Link href='/' className={cn("text-2xl font-bold items-center gap-2", fontSize)}>
