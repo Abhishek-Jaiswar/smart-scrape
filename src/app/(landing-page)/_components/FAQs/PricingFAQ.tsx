@@ -39,9 +39,9 @@ const faqs: FAQ[] = [
 const PricingFAQ: React.FC = () => {
   return (
     <div>
-      <div className='flex items-center gap-3'>
+      <div className='flex items-center gap-3 '>
         <GiPriceTag className='text-4xl text-rose-500' />
-        <h1 className='text-xl text-neutral-900 font-bold font-mono'>Pricing related questions</h1>
+        <h1 className='text-xl text-neutral-900 dark:text-white font-bold font-mono'>Pricing related questions</h1>
       </div>
       <Accordian faq={faqs} />
     </div>

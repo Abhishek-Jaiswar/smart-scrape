@@ -1,29 +1,32 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
+import type React from "react";
+import { useState } from "react";
 
 interface Tab {
-    id: string
-    title: string
-    element: React.ReactNode
+    id: string;
+    title: string;
+    element: React.ReactNode;
 }
 
 interface TabsProps {
-    tabs: Tab[]
-    defaultTabs?: string
+    tabs: Tab[];
+    defaultTabs?: string;
 }
 
 const Tabs: React.FC<TabsProps> = ({ tabs, defaultTabs }) => {
-    const [activeTab, setActiveTab] = useState(defaultTabs || tabs[0].id)
+    const [activeTab, setActiveTab] = useState(defaultTabs || tabs[0].id);
 
     return (
         <div className="w-full">
+            {/* Tab Headers */}
             <div className="flex space-x-4 border-b border-gray-200">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
-                        className={`py-2 px-4 font-mono text-sm text-neutral-800 font-medium transition-colors ${activeTab === tab.id ? "border-b-2 border-rose-500 text-rose-500" : "text-neutral-600 hover:text-rose-500"
+                        className={`py-2 px-4 font-mono text-sm font-medium transition-colors ${activeTab === tab.id
+                                ? "border-b-2 border-rose-500 text-rose-500 dark:text-rose-400"
+                                : "text-neutral-600 dark:text-neutral-400 hover:text-rose-500 dark:hover:text-rose-400"
                             }`}
                         onClick={() => setActiveTab(tab.id)}
                     >
@@ -31,6 +34,8 @@ const Tabs: React.FC<TabsProps> = ({ tabs, defaultTabs }) => {
                     </button>
                 ))}
             </div>
+
+            {/* Tab Content */}
             <div className="mt-4">
                 {tabs.map((tab) => (
                     <div
@@ -44,8 +49,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, defaultTabs }) => {
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Tabs
-
+export default Tabs;

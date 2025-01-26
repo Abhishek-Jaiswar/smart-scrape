@@ -37,7 +37,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({ faq, isOpen, onTog
                 aria-expanded={isOpen}
                 aria-controls={`accordion-content-${faq.id}`}
             >
-                <h2 className="font-bold text-neutral-800 font-mono">{faq.question}</h2>
+                <h2 className="font-bold dark:text-white text-neutral-800 font-mono">{faq.question}</h2>
                 <ChevronDown
                     className={`text-xl font-bold text-rose-500 transition-transform duration-300 ${isOpen ? "transform rotate-180" : ""
                         }`}
@@ -50,7 +50,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({ faq, isOpen, onTog
                 style={{ height: height ? `${height}px` : "0px" }}
             >
                 <div className=" pl-12 pb-6 text-neutral-600">
-                    <p className="text-sm font-medium text-neutral-700 font-mono">{faq.answer}</p>
+                    <p className="text-sm font-medium text-neutral-700 dark:text-neutral-200 font-mono">{faq.answer}</p>
                 </div>
             </div>
         </div>

@@ -8,8 +8,8 @@ import FAQs from "../_components/FAQs"
 
 const Home = () => {
     return (
-        <main className="min-h-screen bg-gradient-to-b from-rose-50/80 to-white relative">
-            <div className="absolute inset-0 grid-pattern"></div>
+        <main className="min-h-screen bg-gradient-to-b from-rose-50/80 to-white relative ">
+            <div className={`absolute inset-0 dark:bg-neutral-900 grid-pattern  `}></div>
             <div className="relative z-10">
                 <header>
                     <Header />
@@ -20,7 +20,7 @@ const Home = () => {
                 <section>
                     <Pricing />
                 </section>
-                <section className=" bg-rose-50/30">
+                <section className=" ">
                     <FAQs />
                 </section>
             </div>

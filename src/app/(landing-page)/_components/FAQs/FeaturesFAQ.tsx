@@ -41,7 +41,7 @@ const FeaturesFAQ = () => {
     <div>
       <div className='flex items-center gap-3'>
         <FaEarlybirds className='text-4xl text-rose-500' />
-        <h1 className='text-xl text-neutral-900 font-bold font-mono'>General platform questions</h1>
+        <h1 className='text-xl text-neutral-900 font-bold dark:text-white font-mono'>General platform questions</h1>
       </div>
       <Accordian faq={faqs} />
     </div>
