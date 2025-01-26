@@ -7,7 +7,6 @@ import Link from "next/link"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { usePathname } from "next/navigation"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet"
-import { DialogTitle } from "@/components/ui/dialog"
 
 const routes = [
     {
