@@ -9,10 +9,10 @@ const BreadcrumbHeader = () => {
     const paths = pathName === "/" ? [""] : pathName.split("/");
     return (
         <div className='flex items-center'>
-            <div className=''>
+            <div className=' flex gap-1'>
                 {paths.map((path, index) => (
-                    <Link key={index} href={path} className='flex items-center text-sm font-medium font-sans text-neutral-700'>
-                        {path === "dashboard" ? "Home" : path}
+                    <Link key={index} href={path} className='flex items-center  text-sm font-medium font-sans text-neutral-700'>
+                        {path === "dashboard" ? "Home /" : path}
                     </Link>
                 ))}
             </div>
