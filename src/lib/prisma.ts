@@ -4,12 +4,13 @@ const prismaClientSignleton = () => {
   return new PrismaClient();
 };
 
-declare const globleThis: {
+declare const globalThis: {
   prismaGlobal: ReturnType<typeof prismaClientSignleton>;
 } & typeof global;
 
-const prisma = globleThis.prismaGlobal ?? prismaClientSignleton();
+const prisma = globalThis.prismaGlobal ?? prismaClientSignleton();
 
 export default prisma;
 
-if (process.env.NODE_ENV !== "production") globleThis.prismaGlobal = prisma;
+if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = prisma;
+
