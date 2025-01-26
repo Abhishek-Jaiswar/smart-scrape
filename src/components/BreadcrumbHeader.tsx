@@ -11,7 +11,7 @@ const BreadcrumbHeader = () => {
         <div className='flex items-center'>
             <div className=' flex gap-1'>
                 {paths.map((path, index) => (
-                    <Link key={index} href={path} className='flex items-center  text-sm font-medium font-sans text-neutral-700'>
+                    <Link key={index} href={path} className='flex items-center  text-sm font-medium font-sans text-neutral-700 dark:text-neutral-300'>
                         {path === "dashboard" ? "Home /" : path}
                     </Link>
                 ))}
