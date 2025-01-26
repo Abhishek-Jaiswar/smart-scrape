@@ -6,7 +6,7 @@ import { SiScratch } from 'react-icons/si'
 
 const Logo = ({
     fontSize = 'text-2xl',
-    iconSize = 20
+    // iconSize = 20
 }: {
     fontSize?: string,
     iconSize?: number
