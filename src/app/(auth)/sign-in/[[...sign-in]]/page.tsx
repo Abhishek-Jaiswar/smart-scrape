@@ -1,4 +1,4 @@
-import AuthInfo from '@/app/components/AuthInfo'
+import AuthInfo from '@/components/AuthInfo'
 import { SignIn } from '@clerk/nextjs'
 
 export default function Page() {
