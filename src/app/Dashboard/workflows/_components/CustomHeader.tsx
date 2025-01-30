@@ -17,16 +17,18 @@ interface CustomHeaderProps {
 const CustomHeader = (props: CustomHeaderProps) => {
     const Icon = props.icon
     return (
-        <DialogHeader className="text-center">
+        <DialogHeader className="text-center px-4">
             <DialogTitle>
-                <div className="flex flex-col items-center gap-2 mb-2">
+                <div className="flex items-start justify-start gap-2 mb-2">
                     {Icon && <Icon size={30} className={cn('stroke-primary', props.iconClassName)} />}
-                    {props && (
-                        <p className={cn('text-xl text-primary', props.titleClassName)}>{props.title}</p>
-                    )}
-                    {props && (
-                        <p className={cn('text-sm text-muted-foreground', props.subtitleClassName)}>{props.subTitle}</p>
-                    )}
+                    <div>
+                        {props && (
+                            <p className={cn('text-xl text-primary', props.titleClassName)}>{props.title}</p>
+                        )}
+                        {props && (
+                            <p className={cn('text-sm text-muted-foreground', props.subtitleClassName)}>{props.subTitle}</p>
+                        )}
+                    </div>
                 </div>
             </DialogTitle>
         </DialogHeader>
