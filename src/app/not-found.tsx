@@ -20,7 +20,7 @@ export default function NotFoundPage() {
                     Page Not Found
                 </h2>
                 <p className="text-sm font-semibold font-mono text-neutral-700 dark:text-neutral-400 pb-4 max-w-2xl">
-                    Don't stress— even the best data can sometimes vanish into the depths of the internet!
+                    Don&apos;t stress— even the best data can sometimes vanish into the depths of the internet!
                 </p>
                 <p className="text-sm font-semibold font-mono text-neutral-700 dark:text-neutral-400 py-4 max-w-2xl">
                     If you think this is a mistake, please contact our support team.
