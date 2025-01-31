@@ -19,8 +19,8 @@ const CustomHeader = (props: CustomHeaderProps) => {
     return (
         <DialogHeader className="text-center px-4">
             <DialogTitle>
-                <div className="flex items-start justify-start gap-2 mb-2">
-                    {Icon && <Icon size={30} className={cn('stroke-primary', props.iconClassName)} />}
+                <div className="flex items-center justify-start gap-2 mb-2">
+                    {Icon && <Icon size={40} className={cn('stroke-primary', props.iconClassName)} />}
                     <div>
                         {props && (
                             <p className={cn('text-xl text-primary', props.titleClassName)}>{props.title}</p>

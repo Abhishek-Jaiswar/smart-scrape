@@ -4,7 +4,7 @@ import { GetUserWorkflows } from '../../../../actions/workflowsForUser'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertCircle } from 'lucide-react'
 import Image from 'next/image'
-import CreateWorkflow from './_components/CreateWorkflow'
+import CreateWorkflow from './_components/CreateWorkflowDialog'
 
 const page = () => {
   return (
