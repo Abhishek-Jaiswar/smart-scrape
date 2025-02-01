@@ -7,7 +7,7 @@ const Editor = ({ workflow }: { workflow: workflow }) => {
     return (
         <ReactFlowProvider>
             <div className='flex items-center flex-col h-full w-full overflow-hidden'>
-                <section className='flex h-full overflow-auto'>
+                <section className='h-screen w-screen overflow-auto'>
                     <FlowEditor workflow={workflow} />
                 </section>
             </div>
