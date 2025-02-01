@@ -32,5 +32,5 @@ export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
         throw new Error("Failed to create workflow")
     }
 
-    redirect(`/workflow/editor/${result.id}`)
+    redirect(`/dashboard/workflow/editor/${result.id}`)
 }
