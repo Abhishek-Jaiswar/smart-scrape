@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input"
 import { useMutation } from "@tanstack/react-query"
 import { deleteWorkflow } from "../../../../../actions/deleteWorkflow"
 import { toast } from "sonner"
-import { Workflow } from "lucide-react"
 
 interface Props {
     open: boolean

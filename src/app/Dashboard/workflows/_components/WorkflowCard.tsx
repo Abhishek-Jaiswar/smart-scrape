@@ -55,7 +55,7 @@ const WorkflowCard = ({ workflow }: { workflow: workflow }) => {
                     </div>
                 </div>
                 <div className='flex items-center space-x-2 '>
-                    <Link href={`/dashboard/workflow/editor/${workflow.id}`}
+                    <Link href={`/workflow/editor/${workflow.id}`}
                         className={cn(buttonVariants({
                             variant: 'outline',
                             size: "sm"
