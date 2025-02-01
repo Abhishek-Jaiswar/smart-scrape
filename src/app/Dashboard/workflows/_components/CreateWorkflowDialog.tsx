@@ -49,7 +49,10 @@ const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
     }, [mutate])
 
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={(open) => {
+            form.reset();
+            setOpen(open)
+        }}>
             <DialogTrigger asChild>
                 <Button variant="default">{triggerText ?? "Create workflow"}</Button>
             </DialogTrigger>

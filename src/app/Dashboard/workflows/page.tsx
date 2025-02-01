@@ -5,6 +5,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertCircle } from 'lucide-react'
 import Image from 'next/image'
 import CreateWorkflow from './_components/CreateWorkflowDialog'
+import WorkflowCard from './_components/WorkflowCard'
 
 const page = () => {
   return (
@@ -65,13 +66,9 @@ async function UserWorkflows() {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {workflows.map((workflow) => (
-        <div key={workflow.id} className="border rounded-lg p-4">
-          {/* Add workflow card content here */}
-          <h3 className="text-lg font-semibold">{workflow.name}</h3>
-          {/* Add more workflow details */}
-        </div>
+    <div className="grid grid-cols-1 gap-4">
+      {workflows.map((workflow, index) => (
+        <WorkflowCard key={workflow.id} workflow={workflow} />
       ))}
     </div>
   )
