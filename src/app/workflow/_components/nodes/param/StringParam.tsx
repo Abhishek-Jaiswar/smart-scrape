@@ -8,7 +8,7 @@ import React, { useId, useState } from 'react'
 
 const StringParam = ({ param, value, updateNodeParamValue }: ParamProps) => {
     const id = useId()
-    const [internalValue, setInernalvalue] = useState(value ?? "")
+    const [internalValue, setInernalvalue] = useState(value)
     return (
         <div className=' space-y-1 p-1 w-full'>
             <Label htmlFor={id} className='text-xs flex'>
