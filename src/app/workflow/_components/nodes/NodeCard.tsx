@@ -33,7 +33,7 @@ const NodeCard = ({
                 })
 
             }}
-            className={cn('rounded-md cursor-pointer bg-background border-2 border-separate w-[440px] text-xs gap-1 flex flex-1', isSelected && "border-primary")}
+            className={cn('rounded-md cursor-pointer bg-background border-2 border-separate w-[440px] text-xs gap-1 flex flex-col flex-1', isSelected && "border-primary")}
 
         >{children}</div>
     )

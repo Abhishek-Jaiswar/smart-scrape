@@ -34,7 +34,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
                 fitViewOptions={fitViewOptions}
                 fitView
             >
-                <Controls position="top-left" fitViewOptions={fitViewOptions} />
+                <Controls position="top-left" className=" text-black" fitViewOptions={fitViewOptions} />
                 <Background variant={BackgroundVariant.Dots} size={1} />
             </ReactFlow>
         </main>
