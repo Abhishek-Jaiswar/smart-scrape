@@ -4,7 +4,10 @@ import prisma from "@/lib/prisma";
 import { createWorkflowSchema, createWorkflowSchemaType } from "@/schema/workflowSchema"
 import { WorkflowStatus } from "@/types/workflow";
 import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
+import { AppNode } from "@/types/appNode";
+import { Edge } from "@xyflow/react";
+import { CreateFlowNode } from "@/lib/workflow/createFlowNode";
+import { TaskType } from "@/types/TaskType";
 
 export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
     const {success, data} = createWorkflowSchema.safeParse(form);
@@ -14,6 +17,13 @@ export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
     }
 
     const {userId} = await auth();
+
+    const initialWorkflow: {nodes: AppNode[], edges: Edge[]} = {
+        nodes: [],
+        edges: [],
+    };
+
+    initialWorkflow.nodes.push(CreateFlowNode(TaskType.LAUNCH_BROWSER));
     
     if (!userId) {
         throw new Error("Unauthenticated")
@@ -23,7 +33,8 @@ export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
         data: {
             userId,
             status: WorkflowStatus.DRAFT,
-            definition: "Default definition",
+            description: "",
+            definition: JSON.stringify(initialWorkflow),
             ...data,
         },
     });
@@ -32,5 +43,5 @@ export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
         throw new Error("Failed to create workflow")
     }
 
-    redirect(`/dashboard/workflow/editor/${result.id}`)
+    return result
 }

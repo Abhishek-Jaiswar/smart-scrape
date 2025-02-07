@@ -2,7 +2,6 @@
 
 import ToolTipWrapper from '@/components/ToolTipWrapper'
 import { Button } from '@/components/ui/button'
-import { workflow } from '@prisma/client'
 import { ChevronLeftIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -11,9 +10,10 @@ import SaveButton from './SaveButton'
 interface Props {
   title: string;
   subtitle?: string;
+  workflowId: string;
 }
 
-const Topbar = ({ title, subtitle }: Props) => {
+const Topbar = ({ title, subtitle, workflowId }: Props) => {
   const router = useRouter()
   return (
     <header className='border-b p-2  border-separate flex justify-between w-full h-[60px] sticky top-0 z-10'>
@@ -32,7 +32,7 @@ const Topbar = ({ title, subtitle }: Props) => {
       </div>
       <div>
         <div className="flex gap-1 flex-1 justify-end">
-          <SaveButton />
+          <SaveButton workflowId={workflowId} />
         </div>
       </div>
     </header>

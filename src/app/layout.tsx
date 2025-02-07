@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "Scrape the world wide web effortlessly",
 };
 
+const meta = {
+  name: "Smartscrape",
+  keyword: "Scraping software, web scrapping",
+}
+
 const appearance = {
   elements: {
     formButtonPrimary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-none",

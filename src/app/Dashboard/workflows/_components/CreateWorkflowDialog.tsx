@@ -16,6 +16,7 @@ import { createWorkflowSchemaType } from "@/schema/workflowSchema"
 import { useMutation } from "@tanstack/react-query"
 import { CreateWorkflow } from "../../../../../actions/createWorkflow"
 import { toast } from "sonner"
+import { useRouter } from "next/navigation"
 
 const createWorkflowSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -24,6 +25,7 @@ const createWorkflowSchema = z.object({
 
 const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
     const [open, setOpen] = useState(false)
+    const router = useRouter()
 
     const form = useForm<createWorkflowSchemaType>({
         resolver: zodResolver(createWorkflowSchema),
@@ -35,8 +37,9 @@ const CreateWorkflowDialog = ({ triggerText }: { triggerText?: string }) => {
 
     const { mutate, isPending } = useMutation({
         mutationFn: CreateWorkflow,
-        onSuccess: () => {
-            toast.success("Workflow is created", { id: "create-workflow" })
+        onSuccess: (result) => {
+            toast.success("Workflow is created", { id: "create-workflow" });
+            router.push(`/workflow/editor/${result.id}`)
         },
         onError: () => {
             toast.error("Failed to create workflow", { id: "create-workflow" })
