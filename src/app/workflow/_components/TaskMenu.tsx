@@ -13,8 +13,8 @@ import { TaskType } from "@/types/TaskType"
 
 const TaskMenu = () => {
   return (
-      <aside className='w-[240px] min-w-[240px] max-w-[240px] border-r-2 border-separate h-full p-2 px-4 overflow-auto'>
-        <Accordion type="multiple" className="w-full">
+      <aside className='w-[250px] min-w-[250px] max-w-[250px] border-r-2 border-separate h-full p-1 px-4 overflow-auto'>
+        <Accordion type="multiple" className="w-full" defaultValue={["extraction"]}>
             <AccordionItem value="extraction" >
                 <AccordionTrigger className="font-bold">
                     Data extraction
@@ -30,8 +30,14 @@ const TaskMenu = () => {
 
 const TaskMenuBtn = ({taskType}: {taskType: TaskType}) => {
     const task = TaskRegistry[taskType]
+
+    const onDragStart = (event: React.DragEvent, type: TaskType) => {
+        event.dataTransfer.setData("application/reactflow", type);
+        event.dataTransfer.effectAllowed = "move";
+    }
+
     return (
-        <Button>
+        <Button variant={"secondary"} className="flex items-center justify-center gap-2 border w-full" draggable onDragStart={event => onDragStart(event, taskType)}>
             <task.icon size={20} />
             {task.label}
         </Button>

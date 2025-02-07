@@ -7,17 +7,18 @@ import { Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useN
 
 import '@xyflow/react/dist/style.css'
 import NodeComponent from "./nodes/NodeComponent"
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
+import { AppNode } from "@/types/appNode"
 
 const nodeTypes = {
     SmartScrapeNode: NodeComponent
 }
 
 const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
-    const [nodes, setNodes, onNodesChange] = useNodesState([])
+    const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([])
     const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
-    const { setViewport } = useReactFlow();
+    const { setViewport, screenToFlowPosition } = useReactFlow();
 
 
     useEffect(() => {
@@ -38,6 +39,24 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
     const snapGrid: [number, number] = [50, 50];
     const fitViewOptions = { padding: 4 }
 
+    const onDragOver = useCallback((event: React.DragEvent) => {
+        event.preventDefault()
+        event.dataTransfer.effectAllowed = "move";
+    }, [])
+
+    const onDrop = useCallback((event: React.DragEvent) => {
+        event.preventDefault();
+        const taskType = event.dataTransfer.getData("application/reactflow")
+        if (typeof taskType === undefined || !taskType) return;
+
+        const position = screenToFlowPosition({
+            x: event.clientX,
+            y: event.clientY
+        });
+
+        const newNode = CreateFlowNode(taskType as TaskType, position)
+        setNodes((nds) => nds.concat(newNode))
+    }, [])
     return (
         <main className=" w-full h-full">
             <ReactFlow
@@ -46,10 +65,12 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
                 onEdgesChange={onEdgesChange}
                 onNodesChange={onNodesChange}
                 nodeTypes={nodeTypes}
-                snapToGrid={true}
+                snapToGrid
                 snapGrid={snapGrid}
                 fitViewOptions={fitViewOptions}
                 fitView
+                onDragOver={onDragOver}
+                onDrop={onDrop}
             >
                 <Controls position="top-left" className=" text-black" fitViewOptions={fitViewOptions} />
                 <Background variant={BackgroundVariant.Dots} size={1} />
