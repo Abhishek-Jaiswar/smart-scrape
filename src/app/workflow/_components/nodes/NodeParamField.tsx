@@ -33,7 +33,7 @@ const NodeParamField = ({ param, nodeId }: { param: TaskParam, nodeId: string })
             return (
                 <BrowserInstanceParam
                     param={param}
-                    value={value}
+                    value={""}
                     updateNodeParamValue={updateNodeParamValue}
                 />
             );

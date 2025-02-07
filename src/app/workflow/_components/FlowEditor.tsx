@@ -9,9 +9,14 @@ import '@xyflow/react/dist/style.css'
 import NodeComponent from "./nodes/NodeComponent"
 import { useCallback, useEffect } from "react"
 import { AppNode } from "@/types/appNode"
+import DeletableEdge from "./edges/DeletableEdge"
 
 const nodeTypes = {
     SmartScrapeNode: NodeComponent
+}
+
+const edgeTypes = {
+    Edg: DeletableEdge
 }
 
 const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
@@ -24,6 +29,8 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
     useEffect(() => {
         try {
             const flow = JSON.parse(workflow.definition);
+            console.log(flow);
+            
             if (!flow) return;
             setNodes(flow.nodes || []);
             setEdges(flow.nodes || [])
@@ -55,11 +62,15 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
         });
 
         const newNode = CreateFlowNode(taskType as TaskType, position)
+        console.log(newNode);
+        
         setNodes((nds) => nds.concat(newNode))
     }, [])
 
     const onConnect = useCallback((connection: Connection) => {
         setEdges(eds => addEdge({ ...connection, animated: true }, eds))
+        console.log("@conn", connection);
+        
     }, [])
     return (
         <main className=" w-full h-full">
@@ -69,6 +80,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
                 onEdgesChange={onEdgesChange}
                 onNodesChange={onNodesChange}
                 nodeTypes={nodeTypes}
+                edgeTypes={edgeTypes}
                 snapToGrid
                 snapGrid={snapGrid}
                 fitViewOptions={fitViewOptions}
