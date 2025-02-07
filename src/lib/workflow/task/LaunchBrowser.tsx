@@ -15,6 +15,12 @@ export const LaunchBrowser = {
             helperText: "eg: http://www.google.com",
             required: true,
             hideHandle: true
+        },
+    ],
+    outputs: [
+        {
+            name: "Html",
+            type: TaskParamsType.STRING,
         }
     ]
 }
