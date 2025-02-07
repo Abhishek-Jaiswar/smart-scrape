@@ -16,7 +16,7 @@ const nodeTypes = {
 }
 
 const edgeTypes = {
-    Edg: DeletableEdge
+    default: DeletableEdge
 }
 
 const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
