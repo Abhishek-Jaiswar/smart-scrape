@@ -3,7 +3,7 @@
 import { CreateFlowNode } from "@/lib/workflow/createFlowNode"
 import { TaskType } from "@/types/TaskType"
 import { workflow as PrismaWorkflow } from "@prisma/client"
-import { Background, BackgroundVariant, Controls, ReactFlow, useEdgesState, useNodesState, useReactFlow } from "@xyflow/react"
+import { addEdge, Background, BackgroundVariant, Connection, Controls, Edge, ReactFlow, useEdgesState, useNodesState, useReactFlow } from "@xyflow/react"
 
 import '@xyflow/react/dist/style.css'
 import NodeComponent from "./nodes/NodeComponent"
@@ -16,7 +16,7 @@ const nodeTypes = {
 
 const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([])
-    const [edges, setEdges, onEdgesChange] = useEdgesState([])
+    const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([])
 
     const { setViewport, screenToFlowPosition } = useReactFlow();
 
@@ -57,6 +57,10 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
         const newNode = CreateFlowNode(taskType as TaskType, position)
         setNodes((nds) => nds.concat(newNode))
     }, [])
+
+    const onConnect = useCallback((connection: Connection) => {
+        setEdges(eds => addEdge({ ...connection, animated: true }, eds))
+    }, [])
     return (
         <main className=" w-full h-full">
             <ReactFlow
@@ -71,6 +75,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
                 fitView
                 onDragOver={onDragOver}
                 onDrop={onDrop}
+                onConnect={onConnect}
             >
                 <Controls position="top-left" className=" text-black" fitViewOptions={fitViewOptions} />
                 <Background variant={BackgroundVariant.Dots} size={1} />
