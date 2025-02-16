@@ -7,6 +7,7 @@ import Editor from '../../_components/Editor';
 const page = async ({ params }: { params: { workflowId: string } }) => {
     const { workflowId } = await params;
     const { userId } = await auth();
+    
 
     if (!userId) {
         return <div>Unauthenticated</div>

@@ -23,7 +23,7 @@ const SaveButton = ({ workflowId }: { workflowId: string }) => {
 
   return (
     <Button variant={"outline"}
-    disabled={saveMutations.isPending}
+      disabled={saveMutations.isPending}
       className='flex items-center gap-2'
       onClick={() => {
         const workflowDefinition = JSON.stringify(toObject())

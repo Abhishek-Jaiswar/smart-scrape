@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from '@/lib/utils'
-import { TaskParam } from '@/types/TaskType'
+import { TaskParam } from '@/types/task'
 import { Handle, Position } from '@xyflow/react'
 import React, { ReactNode } from 'react'
 import { ColorForHandle } from './common'

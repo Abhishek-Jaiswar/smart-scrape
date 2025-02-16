@@ -33,5 +33,5 @@ export const updateWorflow = async ({id, definition}: {id: string, definition: s
         }
     })
 
-    revalidatePath("/workflows")
+    revalidatePath("/workflow")
 }

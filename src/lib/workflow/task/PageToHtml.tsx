@@ -1,4 +1,4 @@
-import { TaskParamsType, TaskType } from "@/types/TaskType";
+import { TaskParamsType, TaskType } from "@/types/task";
 import { CodeIcon, LucideProps } from "lucide-react";
 
 export const PageToHtmlTask = {

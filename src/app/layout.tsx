@@ -20,11 +20,6 @@ export const metadata: Metadata = {
   description: "Scrape the world wide web effortlessly",
 };
 
-const meta = {
-  name: "Smartscrape",
-  keyword: "Scraping software, web scrapping",
-}
-
 const appearance = {
   elements: {
     formButtonPrimary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-none",
@@ -44,11 +39,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <ClerkProvider
       appearance={appearance}
       afterSignOutUrl={"/sign-in"}
     >
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
@@ -57,7 +53,7 @@ export default function RootLayout({
           </AppProviders>
           <Toaster richColors />
         </body>
-      </html>
-    </ClerkProvider>
+      </html >
+    </ClerkProvider >
   );
 }

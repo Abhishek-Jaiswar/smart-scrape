@@ -54,7 +54,7 @@ async function UserWorkflows() {
     return (
       <div className="flex flex-col items-center justify-center gap-4 h-full">
         <div className="mt-7">
-          <Image src="/no-workflow.svg" alt="No workflows" width={400} height={400} className="max-w-full h-auto" />
+          <Image src="/no-workflow.svg" alt="No workflows" width={400} height={400} className="max-w-full h-auto" priority />
         </div>
         <div className="text-center">
           <p className="text-2xl font-bold font-sans text-neutral-700 dark:text-neutral-300">No workflow created yet</p>

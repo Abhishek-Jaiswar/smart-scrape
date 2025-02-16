@@ -1,13 +1,13 @@
 "use client"
 
 import { CreateFlowNode } from "@/lib/workflow/createFlowNode"
-import { TaskType } from "@/types/TaskType"
+import { TaskType } from "@/types/task"
 import { workflow as PrismaWorkflow } from "@prisma/client"
 import { addEdge, Background, BackgroundVariant, Connection, Controls, Edge, ReactFlow, useEdgesState, useNodesState, useReactFlow } from "@xyflow/react"
 
 import '@xyflow/react/dist/style.css'
 import NodeComponent from "./nodes/NodeComponent"
-import { useCallback, useEffect } from "react"
+import React, { useCallback, useEffect } from "react"
 import { AppNode } from "@/types/appNode"
 import DeletableEdge from "./edges/DeletableEdge"
 
@@ -16,7 +16,8 @@ const nodeTypes = {
 }
 
 const edgeTypes = {
-    default: DeletableEdge
+    default: DeletableEdge,
+
 }
 
 const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
@@ -29,11 +30,10 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
     useEffect(() => {
         try {
             const flow = JSON.parse(workflow.definition);
-            console.log(flow);
-            
+
             if (!flow) return;
             setNodes(flow.nodes || []);
-            setEdges(flow.nodes || [])
+            setEdges(flow.edges || []);
 
             if (!flow.viewport) return;
             const { x = 0, y = 0, zoom = 1 } = flow.viewport
@@ -41,14 +41,14 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
         } catch (error) {
 
         }
-    }, [workflow, setEdges, setNodes])
+    }, [workflow.definition, setEdges, setNodes])
 
     const snapGrid: [number, number] = [50, 50];
     const fitViewOptions = { padding: 4 }
 
     const onDragOver = useCallback((event: React.DragEvent) => {
         event.preventDefault()
-        event.dataTransfer.effectAllowed = "move";
+        event.dataTransfer.dropEffect = "move";
     }, [])
 
     const onDrop = useCallback((event: React.DragEvent) => {
@@ -62,15 +62,11 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
         });
 
         const newNode = CreateFlowNode(taskType as TaskType, position)
-        console.log(newNode);
-        
         setNodes((nds) => nds.concat(newNode))
     }, [])
 
     const onConnect = useCallback((connection: Connection) => {
         setEdges(eds => addEdge({ ...connection, animated: true }, eds))
-        console.log("@conn", connection);
-        
     }, [])
     return (
         <main className=" w-full h-full">

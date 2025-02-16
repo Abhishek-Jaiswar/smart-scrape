@@ -1,4 +1,4 @@
-import { TaskParam, TaskParamsType } from '@/types/TaskType'
+import { TaskParam, TaskParamsType } from '@/types/task'
 import React, { useCallback } from 'react'
 import StringParam from './param/StringParam'
 import { useReactFlow } from '@xyflow/react'

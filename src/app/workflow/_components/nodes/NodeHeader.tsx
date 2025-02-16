@@ -3,12 +3,12 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { TaskRegistry } from "@/lib/workflow/task/registry"
-import { TaskType } from "@/types/TaskType"
+import { TaskType } from "@/types/task"
 import { CoinsIcon, GripVerticalIcon } from "lucide-react"
 
 const NodeHeader = ({ taskType }: { taskType: TaskType }) => {
     // this is task data, coming from registery where all tasks are defined
-    const task = TaskRegistry[taskType] 
+    const task = TaskRegistry[taskType]
 
     return (
         <div className="flex items-center gap-2 p-2 w-full">
@@ -18,7 +18,7 @@ const NodeHeader = ({ taskType }: { taskType: TaskType }) => {
                 <div className="flex gap-1 items-center">
                     {task.isEntryPoint && <Badge className="rounded-full">Entry point</Badge>}
                     <Badge className="gap-2 flex items-center text-xs rounded-full">
-                        <CoinsIcon size={16}/>
+                        <CoinsIcon size={16} />
                         TODO
                     </Badge>
                     <Button variant={"ghost"} size={"icon"} className="drag-handle cursor-grab" >
