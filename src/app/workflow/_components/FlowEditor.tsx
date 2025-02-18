@@ -24,7 +24,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
     const [nodes, setNodes, onNodesChange] = useNodesState<AppNode>([])
     const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([])
 
-    const { setViewport, screenToFlowPosition } = useReactFlow();
+    const { setViewport, screenToFlowPosition, updateNodeData } = useReactFlow();
 
 
     useEffect(() => {
@@ -66,8 +66,27 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
     }, [])
 
     const onConnect = useCallback((connection: Connection) => {
-        setEdges(eds => addEdge({ ...connection, animated: true }, eds))
-    }, [])
+        setEdges(eds => addEdge({ ...connection, type: "default", animated: true }, eds));
+
+        if (!connection.targetHandle) return;
+
+        const node = nodes.find((nd) => nd.id === connection.target);
+        
+        if (!node) return;
+        const nodeInputs = node.data.inputs;
+        updateNodeData(node?.id, {
+            inputs: {
+                ...nodeInputs,
+                [connection.targetHandle]: ""
+            },
+        })
+        console.log("updated node", node.id);
+
+
+    }, [setEdges, updateNodeData, nodes]);
+
+    console.log("Nodes", nodes);
+
     return (
         <main className=" w-full h-full">
             <ReactFlow

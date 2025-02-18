@@ -21,6 +21,7 @@ const TaskMenu = () => {
                     </AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-1">
                         <TaskMenuBtn taskType={TaskType.PAGE_TO_HTML} />
+                        <TaskMenuBtn taskType={TaskType.EXTRACT_TEXT_FROM_ELEMENT} />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
@@ -37,14 +38,14 @@ const TaskMenuBtn = ({ taskType }: { taskType: TaskType }) => {
     }
 
     return (
-        <Button variant={"secondary"} className="flex items-center justify-center gap-2 border w-full" 
-        draggable
-         onDragStart={event => onDragStart(event, taskType)}>
+        <Button variant={"secondary"} className="flex items-center justify-center gap-2 border w-full"
+            draggable
+            onDragStart={event => onDragStart(event, taskType)}>
             <task.icon size={20} />
             {task.label}
         </Button>
     )
 }
 
-export default TaskMenu
+export default TaskMenu;
 
