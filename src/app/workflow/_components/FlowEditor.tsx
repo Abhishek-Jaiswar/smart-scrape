@@ -11,6 +11,7 @@ import React, { useCallback, useEffect } from "react"
 import { AppNode } from "@/types/appNode"
 import DeletableEdge from "./edges/DeletableEdge"
 import { TaskRegistry } from "@/lib/workflow/task/registry"
+import { toast } from "sonner"
 
 const nodeTypes = {
     SmartScrapeNode: NodeComponent
@@ -97,7 +98,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
 
         if (!source || !target) {
             console.error("Invalid connection: source or target node not found");
-            // toast.error("Invalid connection: source or target node not found")
+            // toast.error("Invalid connection: source or target node not found", { id: "invalid-connection" })
             return false
         }
 
