@@ -10,6 +10,7 @@ import NodeComponent from "./nodes/NodeComponent"
 import React, { useCallback, useEffect } from "react"
 import { AppNode } from "@/types/appNode"
 import DeletableEdge from "./edges/DeletableEdge"
+import { TaskRegistry } from "@/lib/workflow/task/registry"
 
 const nodeTypes = {
     SmartScrapeNode: NodeComponent
@@ -63,7 +64,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
 
         const newNode = CreateFlowNode(taskType as TaskType, position)
         setNodes((nds) => nds.concat(newNode))
-    }, [])
+    }, [screenToFlowPosition, setNodes])
 
     const onConnect = useCallback((connection: Connection) => {
         setEdges(eds => addEdge({ ...connection, type: "default", animated: true }, eds));
@@ -71,7 +72,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
         if (!connection.targetHandle) return;
 
         const node = nodes.find((nd) => nd.id === connection.target);
-        
+
         if (!node) return;
         const nodeInputs = node.data.inputs;
         updateNodeData(node?.id, {
@@ -80,12 +81,42 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
                 [connection.targetHandle]: ""
             },
         })
-        console.log("updated node", node.id);
 
 
     }, [setEdges, updateNodeData, nodes]);
 
-    console.log("Nodes", nodes);
+    const isValidConnection = useCallback((connection: Edge | Connection) => {
+        //No self connection
+        if (connection.source === connection.target) {
+            return false
+        }
+
+        // Same taskParam type connection
+        const source = nodes.find((node) => node.id === connection.source);
+        const target = nodes.find((node) => node.id === connection.target);
+        
+        if (!source || !target) {
+            console.error("Invalid connection: source or target node not found");
+            // toast.error("Invalid connection: source or target node not found")
+            return false
+        }
+
+        const sourceTask = TaskRegistry[source.data.type];
+        const targetTask = TaskRegistry[target.data.type];
+
+        const output = sourceTask.outputs.find((out) => out.name === connection.sourceHandle);
+        const input = targetTask.inputs.find((inp) => inp.name === connection.targetHandle);
+
+        if (input?.type !== output?.type) {
+            console.error("Invalid connection: type mismatch");
+            return false
+        }
+
+        console.log("@DEBUG", { input, output });
+
+
+        return true
+    }, [nodes])
 
     return (
         <main className=" w-full h-full">
@@ -103,6 +134,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
                 onDragOver={onDragOver}
                 onDrop={onDrop}
                 onConnect={onConnect}
+                isValidConnection={isValidConnection}
             >
                 <Controls position="top-left" className=" text-black" fitViewOptions={fitViewOptions} />
                 <Background variant={BackgroundVariant.Dots} size={1} />
