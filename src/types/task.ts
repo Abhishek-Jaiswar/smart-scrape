@@ -9,6 +9,7 @@ export enum TaskParamsType {
     BROWSER_INSTANCE = "BROWSER_INSTANCE"
 }
 
+//Input types
 export interface TaskParam {
     name: string;
     type: TaskParamsType;
