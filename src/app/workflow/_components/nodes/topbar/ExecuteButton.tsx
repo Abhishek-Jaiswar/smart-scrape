@@ -17,7 +17,9 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
         onSuccess: () => {
             toast.success("Execution started", { id: 'flow-execution' })
         },
-        onError: () => {
+        onError: (error) => {
+            console.log(error);
+
             toast.error("Something went wrong", { id: 'flow-execution' })
         },
     })

@@ -38,7 +38,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
 
     return (
         <div className='flex w-full h-full'>
-            <aside className='w-[320px] min-w-[320px] max-w-[320px] border-r-2 border-separate flex flex-grow flex-col overflow-hidden'>
+            <aside className='w-[340px] min-w-[340px] max-w-[340px] border-r-2 border-separate flex flex-grow flex-col overflow-hidden'>
                 <div className="py-4 px-2">
                     {/* status label */}
                     <ExecutionLabel

@@ -88,7 +88,7 @@ export const RunWorkflow = async (form: {
     throw new Error("Workflow execution not created");
   }
 
-  ExecuteWorkflow(execution.id);
+  await ExecuteWorkflow(execution.id);
 
   redirect(`/workflow/runs/${workflowId}/${execution.id}`);
 };
