@@ -18,7 +18,7 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
             toast.success("Execution started", { id: 'flow-execution' })
         },
         onError: (error) => {
-            console.log(error);
+            console.log("This is strange", error);
 
             toast.error("Something went wrong", { id: 'flow-execution' })
         },
@@ -32,6 +32,7 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
             onClick={() => {
                 const plan = generate();
                 if (!plan) {
+                    // client side validation
                     return;
                 }
 
