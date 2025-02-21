@@ -12,9 +12,10 @@ interface Props {
   title: string;
   subtitle?: string;
   workflowId: string;
+  hideButton?: boolean
 }
 
-const Topbar = ({ title, subtitle, workflowId }: Props) => {
+const Topbar = ({ title, subtitle, workflowId, hideButton = false }: Props) => {
   const router = useRouter()
   return (
     <header className='border-b p-2  border-separate flex justify-between w-full h-[60px] sticky top-0 z-10'>
@@ -33,8 +34,12 @@ const Topbar = ({ title, subtitle, workflowId }: Props) => {
       </div>
       <div>
         <div className="flex gap-1 flex-1 justify-end">
-          <SaveButton workflowId={workflowId} />
-          <ExecuteButton workflowId={workflowId} />
+          {hideButton === false && (
+            <>
+              <SaveButton workflowId={workflowId} />
+              <ExecuteButton workflowId={workflowId} />
+            </>
+          )}
         </div>
       </div>
     </header>

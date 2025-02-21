@@ -6,9 +6,11 @@ import { TaskRegistry } from "@/lib/workflow/task/registry";
 import {
   ExecutionPhaseStatus,
   WorkflowExecutionPlan,
+  WorkflowExecutionStatus,
   WorkflowExecutionTrigger,
 } from "@/types/workflow";
 import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export const RunWorkflow = async (form: {
   workflowId: string;
@@ -57,7 +59,7 @@ export const RunWorkflow = async (form: {
     data: {
       workflowId,
       userId,
-      status: ExecutionPhaseStatus.PENDING,
+      status: WorkflowExecutionStatus.PENDING,
       startedAt: new Date(),
       trigger: WorkflowExecutionTrigger.MANUAL,
       phases: {
@@ -84,4 +86,6 @@ export const RunWorkflow = async (form: {
   if (!execution) {
     throw new Error("Workflow execution not created");
   }
+
+  redirect(`/workflow/runs/${workflowId}/${execution.id}`);
 };
