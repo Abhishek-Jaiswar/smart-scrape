@@ -106,7 +106,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
                 </div>
             </aside>
             <div className='flex w-full h-full'>
-                <pre>{JSON.stringify(phaseDetails, null, 4)}</pre>
+                <pre>{JSON.stringify(phaseDetails.data, null, 4)}</pre>
             </div>
         </div>
     )
