@@ -5,17 +5,23 @@ export enum TaskType {
 }
 
 export enum TaskParamsType {
-    STRING = "STRING",
-    BROWSER_INSTANCE = "BROWSER_INSTANCE"
+  STRING = "STRING",
+  BROWSER_INSTANCE = "BROWSER_INSTANCE",
 }
 
 //Input types
 export interface TaskParam {
-    name: string;
-    type: TaskParamsType;
-    helperText?: string;
-    required?: boolean;
-    hideHandle?: boolean;
-    value?: string;
-    [key: string]: any;
+  name: string;
+  type: TaskParamsType;
+  helperText?: string;
+  required?: boolean;
+  hideHandle?: boolean;
+  value?: string;
+  [key: string]: any;
 }
+
+//ValidationSooner
+export type AppNodeMissingInputs = {
+  nodeId: string;
+  inputs: string[];
+};

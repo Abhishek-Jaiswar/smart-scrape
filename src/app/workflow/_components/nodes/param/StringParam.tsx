@@ -29,7 +29,7 @@ const StringParam = ({ param, value, updateNodeParamValue, disabled }: ParamProp
             <Component
                 id={id}
                 disabled={disabled}
-                className=' text-xs border border-muted-foreground bg-white'
+                className=' text-xs border border-muted-foreground bg-neutral-50 font-semibold text-neutral-800 dark:bg-neutral-500 dark:text-white'
                 placeholder='Enter value here...'
                 value={internalValue}
                 onChange={(e: any) => setInternalValue(e.target.value)}
