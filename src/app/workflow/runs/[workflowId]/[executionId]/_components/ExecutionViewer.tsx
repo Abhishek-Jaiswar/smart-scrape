@@ -34,6 +34,7 @@ import {
 import { cn } from '@/lib/utils';
 import { LogLevel } from '@/types/log';
 import PhaseStatusBadge from './PhaseStatusBadge';
+import ReactCountUpWrapper from '@/components/ReactCountUpWrapper';
 
 
 
@@ -86,7 +87,12 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
                     <ExecutionLabel
                         icon={CircleDashedIcon}
                         label={"Status"}
-                        value={query.data?.status}
+                        value={
+                            <div className='font-semibold capitalize flex gap-2 items-center'>
+                                <PhaseStatusBadge status={query.data?.status as ExecutionPhaseStatus} />
+                                <span>{query.data?.status}</span>
+                            </div>
+                        }
                     />
 
                     {/* StartedAtLebel */}
@@ -117,7 +123,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
                     <ExecutionLabel
                         icon={CoinsIcon}
                         label={"Credits consumed"}
-                        value={creditsConsumed}
+                        value={<ReactCountUpWrapper value={creditsConsumed} />}
                     />
                 </div>
                 <Separator />
@@ -171,7 +177,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
                                 <div className='flex items-center gap-2'>
                                     <CoinsIcon size={18} className='stroke-muted-foreground' />
                                     <span>Credits</span>
-                                    <span>TODO</span>
+                                    <span>{phaseDetails.data.creditsConsumed}</span>
                                 </div>
                             </Badge>
                             <Badge variant={"outline"} className='space-x-4'>

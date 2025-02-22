@@ -1,4 +1,4 @@
-import Topbar from '@/app/workflow/_components/nodes/topbar/Topbar';
+import Topbar from '@/app/workflow/_components/topbar/Topbar';
 import { waitFor } from '@/lib/helper/waitfor';
 import { auth } from '@clerk/nextjs/server';
 import { Loader2 } from 'lucide-react';

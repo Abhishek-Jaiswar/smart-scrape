@@ -2,7 +2,7 @@ import React from 'react'
 
 const AuthInfo = () => {
   return (
-    <div>
+    <div className='bg-[#ff3737]'>
         hello
     </div>
   )

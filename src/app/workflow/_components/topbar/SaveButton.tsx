@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useReactFlow } from '@xyflow/react'
 import { CheckIcon } from 'lucide-react'
 import React from 'react'
-import { updateWorflow } from '../../../../../../actions/updateWorkflow'
+import { updateWorflow } from '../../../../../actions/updateWorkflow'
 import { toast } from 'sonner'
 
 const SaveButton = ({ workflowId }: { workflowId: string }) => {

@@ -2,7 +2,7 @@ import { workflow } from '@prisma/client'
 import React from 'react'
 import { ReactFlowProvider } from '@xyflow/react'
 import FlowEditor from './FlowEditor'
-import Topbar from './nodes/topbar/Topbar'
+import Topbar from './topbar/Topbar'
 import TaskMenu from './TaskMenu'
 import { FlowValidationContextProvider } from '@/components/context/flowValidationContext'
 

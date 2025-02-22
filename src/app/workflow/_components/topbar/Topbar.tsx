@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import SaveButton from './SaveButton'
 import ExecuteButton from './ExecuteButton'
+import NavigationTabs from './NavigationTabs'
 
 interface Props {
   title: string;
@@ -18,8 +19,8 @@ interface Props {
 const Topbar = ({ title, subtitle, workflowId, hideButton = false }: Props) => {
   const router = useRouter()
   return (
-    <header className='border-b p-2  border-separate flex justify-between w-full h-[60px] sticky top-0 z-10'>
-      <div className="flex gap-1 flex-1">
+    <header className='border-b p-2 border-separate flex items-center justify-between w-full h-[60px] sticky top-0 z-10 bg-white'>
+      <div className="flex gap-1 ">
         <ToolTipWrapper content="Back">
           <Button variant={"ghost"} size={"icon"} onClick={() => router.back()}>
             <ChevronLeftIcon size={20} />
@@ -32,6 +33,7 @@ const Topbar = ({ title, subtitle, workflowId, hideButton = false }: Props) => {
           )}
         </div>
       </div>
+      <NavigationTabs workflowId={workflowId} />
       <div>
         <div className="flex gap-1 flex-1 justify-end">
           {hideButton === false && (
