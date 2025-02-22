@@ -165,9 +165,6 @@ async function executeWorkflowPhase(
   });
 
   const creditsRequired = TaskRegistry[node.data.type].credits;
-  console.log(
-    `Executing phase: ${phase.name} with ${creditsRequired} credits required`
-  );
 
   // TODO: decrement user balance with required credits
 
@@ -291,5 +288,27 @@ async function cleanUpEnvironment(envirnment: Environment) {
     await envirnment.browser
       .close()
       .catch((err) => console.error("Cannot close browser", err));
+  }
+}
+
+async function decrementCredits(userId: string, amount: number, logCollector: LogCollector) {
+  try {
+    await prisma.userBalance.update({
+      where: {
+        userId,
+        credits: {
+          gte: amount,
+        },
+      },
+      data: {
+        credits: {
+          decrement: amount,
+        },
+      },
+    });
+    return true
+  } catch (error) {
+    logCollector.error("Insufficient balance")
+    return false
   }
 }

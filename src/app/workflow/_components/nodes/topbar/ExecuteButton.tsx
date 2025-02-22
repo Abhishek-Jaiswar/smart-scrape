@@ -3,23 +3,25 @@
 import useExecutionPlan from "@/components/hooks/useExecutionPlan"
 import { Button } from "@/components/ui/button"
 import { useMutation } from "@tanstack/react-query"
-import { PlayIcon } from "lucide-react"
+import { Loader2Icon, PlayIcon } from "lucide-react"
 import { RunWorkflow } from "../../../../../../actions/runWorkflow"
 import { toast } from "sonner"
 import { useReactFlow } from "@xyflow/react"
+import { useRouter } from "next/navigation"
 
 const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
     const generate = useExecutionPlan()
     const { toObject } = useReactFlow()
 
+    const router = useRouter()
+
     const mutation = useMutation({
         mutationFn: RunWorkflow,
-        onSuccess: () => {
+        onSuccess: (executionId) => {
             toast.success("Execution started", { id: 'flow-execution' })
+            router.push(`/workflow/runs/${workflowId}/${executionId}`)
         },
         onError: (error) => {
-            console.log("This is strange", error);
-
             toast.error("Something went wrong", { id: 'flow-execution' })
         },
     })
@@ -36,14 +38,27 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
                     return;
                 }
 
+                const flowDefinition = JSON.stringify(toObject());
+                // console.log("@FLOW_DEFINITION: ", flowDefinition);
+
                 mutation.mutate({
                     workflowId: workflowId,
-                    flowDefinition: JSON.stringify(toObject())
+                    flowDefinition: flowDefinition
                 })
             }}
         >
-            <PlayIcon size={16} className="stroke-rose-500" />
-            Execute
+
+            {mutation.isPending ? (
+                <span className="flex items-center gap-1">
+                    <Loader2Icon className="animate-spin" />
+                    Executing...
+                </span>
+            ) : (
+                <span className="flex items-center gap-1">
+                    <PlayIcon size={16} className="stroke-rose-500" />
+                    Execute
+                </span>
+            )}
         </Button>
     )
 }
