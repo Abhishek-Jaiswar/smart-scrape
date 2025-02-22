@@ -8,34 +8,34 @@ export async function ExtractTextFromElementExecuter(
   try {
     const selector = environment.getInput("Selector");
     if (!selector) {
-      console.error("Selector not defined");
+      environment.log.error("Selector not defined");
       return false;
     }
 
     const html = environment.getInput("Html");
     if (!html) {
-      console.error("Html not defined");
+      environment.log.error("HTML not defined");
       return false;
     }
 
     const $ = cheerio.load(html);
     const element = $(selector);
     if (!element) {
-      console.error("Element not found");
+      environment.log.error("Element not found");
       return false;
     }
 
     const extractText = $.text(element);
     if (!extractText) {
-      console.error("Element has no text");
+      environment.log.error("Element has no text");
       return false;
     }
 
     environment.setOutput("Extracted text", extractText);
 
     return true;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    environment.log.error(error.message);
     return false;
   }
 }

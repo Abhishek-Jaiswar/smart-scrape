@@ -1,5 +1,4 @@
-import { Environment, ExecutionEnvironment } from "@/types/executer";
-import puppeteer from "puppeteer";
+import { ExecutionEnvironment } from "@/types/executer";
 import { PageToHtmlTask } from "../task/PageToHtml";
 
 export async function PageToHtmlExecuter(
@@ -7,11 +6,11 @@ export async function PageToHtmlExecuter(
 ): Promise<boolean> {
   try {
     const html = await environment.getPage()!.content();
-    environment.setOutput("Html", html)
+    environment.setOutput("Html", html);
 
     return true;
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    environment.log.error(error.message);
     return false;
   }
 }
