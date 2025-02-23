@@ -1,6 +1,7 @@
 import { ExecutionEnvironment } from "@/types/executer";
 import { PageToHtmlTask } from "../task/PageToHtml";
 
+/* eslint-disable */
 export async function PageToHtmlExecuter(
   environment: ExecutionEnvironment<typeof PageToHtmlTask>
 ): Promise<boolean> {

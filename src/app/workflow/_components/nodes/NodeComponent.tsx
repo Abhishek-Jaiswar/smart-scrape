@@ -32,4 +32,6 @@ const NodeComponent = memo((props: NodeProps) => {
     )
 })
 
+NodeComponent.displayName = "NodeComponent";
+
 export default NodeComponent;

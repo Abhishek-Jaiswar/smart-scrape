@@ -40,7 +40,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
             const { x = 0, y = 0, zoom = 1 } = flow.viewport
             setViewport({ x, y, zoom })
         } catch (error) {
-            console.log("error in flow editor");
+            console.log("error in flow editor", error);
         }
     }, [workflow.definition, setEdges, setNodes, setViewport])
 
