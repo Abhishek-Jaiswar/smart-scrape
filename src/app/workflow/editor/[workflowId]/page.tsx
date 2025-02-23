@@ -3,15 +3,8 @@ import { auth } from '@clerk/nextjs/server';
 import React from 'react';
 import Editor from '../../_components/Editor';
 
-interface PageProps {
-    params: Awaited<{ workflowId: string }>; // Ensures it's not a Promise
-}
-
-async function Page({ params }: PageProps) {
-    const workflowId = params.workflowId; // No need for await
-
-    const authResult = await auth();
-    const userId = authResult?.userId;
+async function Page({ params }: { params: { workflowId: string } }) {
+    const { userId } = await auth()
 
     if (!userId) {
         return <div>Unauthenticated</div>;
@@ -19,7 +12,7 @@ async function Page({ params }: PageProps) {
 
     const workflow = await prisma.workflow.findUnique({
         where: {
-            id: workflowId,
+            id: params.workflowId,
             userId,
         }
     });
@@ -29,6 +22,6 @@ async function Page({ params }: PageProps) {
     }
 
     return <Editor workflow={workflow} />;
-}
+};
 
 export default Page;
