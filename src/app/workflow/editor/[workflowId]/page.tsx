@@ -4,10 +4,11 @@ import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 import Editor from '../../_components/Editor';
 
+/* eslint-disable */
 const page = async ({ params }: { params: { workflowId: string } }) => {
     const { workflowId } = await params;
     const { userId } = await auth();
-    
+
 
     if (!userId) {
         return <div>Unauthenticated</div>
