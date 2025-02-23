@@ -1,17 +1,18 @@
-
 import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 import Editor from '../../_components/Editor';
 
-/* eslint-disable */
-const page = async ({ params }: { params: { workflowId: string } }) => {
-    const { workflowId } = await params;
+interface PageProps {
+    params: { workflowId: string };
+}
+
+const Page = async ({ params }: PageProps) => {
+    const { workflowId } = params;
     const { userId } = await auth();
 
-
     if (!userId) {
-        return <div>Unauthenticated</div>
+        return <div>Unauthenticated</div>;
     }
 
     const workflow = await prisma.workflow.findUnique({
@@ -19,17 +20,13 @@ const page = async ({ params }: { params: { workflowId: string } }) => {
             id: workflowId,
             userId,
         }
-    })
+    });
 
     if (!workflow) {
-        return <div>Workflow not found</div>
+        return <div>Workflow not found</div>;
     }
 
-    return (
-        <Editor workflow={workflow} />
-    )
+    return <Editor workflow={workflow} />;
+};
 
-
-}
-
-export default page
+export default Page;
