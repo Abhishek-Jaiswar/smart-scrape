@@ -8,7 +8,7 @@ interface PageProps {
 }
 
 async function Page({ params }: PageProps) {
-    const resolvedParams = await params.workflowId;
+    const resolvedParams = params.workflowId;
     const workflowId = resolvedParams;
 
     const authResult = await auth();
