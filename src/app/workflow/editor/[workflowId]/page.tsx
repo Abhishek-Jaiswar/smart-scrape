@@ -4,12 +4,11 @@ import React from 'react';
 import Editor from '../../_components/Editor';
 
 interface PageProps {
-    params: { workflowId: string };
+    params: Awaited<{ workflowId: string }>; // Ensures it's not a Promise
 }
 
 async function Page({ params }: PageProps) {
-    const resolvedParams = params.workflowId;
-    const workflowId = resolvedParams;
+    const workflowId = params.workflowId; // No need for await
 
     const authResult = await auth();
     const userId = authResult?.userId;
@@ -30,6 +29,6 @@ async function Page({ params }: PageProps) {
     }
 
     return <Editor workflow={workflow} />;
-};
+}
 
 export default Page;
