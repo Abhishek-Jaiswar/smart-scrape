@@ -15,7 +15,6 @@ import { Browser, Page } from "puppeteer";
 import { Edge } from "@xyflow/react";
 import { LogCollector } from "@/types/log";
 import { createLogCollector } from "../log";
-import { waitFor } from "../helper/waitfor";
 
 export const ExecuteWorkflow = async (executionId: string) => {
   const execution = await prisma.workflowExecution.findUnique({
@@ -141,7 +140,7 @@ async function finilizeWorkflowExecution(
         lastRunAt: finalStatus,
       },
     })
-    .catch((err) => {
+    .catch(() => {
       //ignore
       //This means we have triggerd other runs for this workflow
     });

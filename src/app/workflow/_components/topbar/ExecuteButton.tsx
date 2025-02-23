@@ -21,7 +21,7 @@ const ExecuteButton = ({ workflowId }: { workflowId: string }) => {
             toast.success("Execution started", { id: 'flow-execution' })
             router.push(`/workflow/runs/${workflowId}/${executionId}`)
         },
-        onError: (error) => {
+        onError: () => {
             toast.error("Something went wrong", { id: 'flow-execution' })
         },
     })

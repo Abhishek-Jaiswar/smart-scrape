@@ -1,6 +1,4 @@
 import Topbar from '@/app/workflow/_components/topbar/Topbar';
-import { waitFor } from '@/lib/helper/waitfor';
-import { auth } from '@clerk/nextjs/server';
 import { Loader2 } from 'lucide-react';
 import React, { Suspense } from 'react'
 import { GetWorkflowExecutionWithPhase } from '../../../../../../actions/getWorkflowExecutionWithPhase';
@@ -37,7 +35,6 @@ const ExecutionViewerPage = async ({ params }: {
 export default ExecutionViewerPage
 
 const ExecutionViewerWrapper = async ({ executionId }: { executionId: string }) => {
-    const { userId } = await auth();
 
     const workflowExecution = await GetWorkflowExecutionWithPhase(executionId)
 

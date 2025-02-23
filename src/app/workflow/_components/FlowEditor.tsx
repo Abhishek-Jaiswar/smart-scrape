@@ -43,7 +43,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
         } catch (error) {
 
         }
-    }, [workflow.definition, setEdges, setNodes])
+    }, [workflow.definition, setEdges, setNodes, setViewport])
 
     const snapGrid: [number, number] = [50, 50];
     const fitViewOptions = { padding: 4 }

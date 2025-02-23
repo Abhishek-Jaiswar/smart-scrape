@@ -1,4 +1,4 @@
-import { Environment, ExecutionEnvironment } from "@/types/executer";
+import { ExecutionEnvironment } from "@/types/executer";
 import { ExtractTextFromElementTask } from "../task/ExtractTextFromEle";
 import * as cheerio from "cheerio";
 

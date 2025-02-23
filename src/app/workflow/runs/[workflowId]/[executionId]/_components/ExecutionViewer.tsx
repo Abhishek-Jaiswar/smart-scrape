@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { GetWorkflowExecutionWithPhase } from '../../../../../../../actions/getWorkflowExecutionWithPhase'
 import { useQuery } from '@tanstack/react-query';
 import { ExecutionPhaseStatus, WorkflowExecutionStatus } from '@/types/workflow';
-import { CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2, Loader2Icon, LucideIcon, LucideProps, WorkflowIcon } from 'lucide-react';
+import { CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2Icon, LucideIcon,  WorkflowIcon } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns'
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
@@ -16,7 +16,6 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"

@@ -13,7 +13,7 @@ const StringParam = ({ param, value, updateNodeParamValue, disabled }: ParamProp
     
     useEffect(() => {
         setInternalValue(internalValue);
-    }, [value]);
+    }, [value, internalValue]);
 
     let Component: any = Input;
     if (param.variant === "textarea") {
