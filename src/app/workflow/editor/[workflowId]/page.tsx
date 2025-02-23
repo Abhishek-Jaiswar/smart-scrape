@@ -1,15 +1,18 @@
 import prisma from '@/lib/prisma';
 import { auth } from '@clerk/nextjs/server';
-import React from 'react'
+import React from 'react';
 import Editor from '../../_components/Editor';
 
 interface PageProps {
     params: { workflowId: string };
 }
 
-const Page = async ({ params }: PageProps) => {
-    const { workflowId } = params;
-    const { userId } = await auth();
+async function Page({ params }: PageProps) {
+    const resolvedParams = await params;
+
+    const { workflowId } = resolvedParams;
+    const authResult = await auth();
+    const userId = authResult?.userId;
 
     if (!userId) {
         return <div>Unauthenticated</div>;
