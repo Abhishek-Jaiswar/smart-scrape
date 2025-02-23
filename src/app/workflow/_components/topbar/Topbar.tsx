@@ -8,16 +8,19 @@ import React from 'react'
 import SaveButton from './SaveButton'
 import ExecuteButton from './ExecuteButton'
 import NavigationTabs from './NavigationTabs'
+import PublishButton from './PublishButton'
 
 interface Props {
   title: string;
   subtitle?: string;
   workflowId: string;
   hideButton?: boolean
+  isPublished?: boolean
 }
 
-const Topbar = ({ title, subtitle, workflowId, hideButton = false }: Props) => {
+const Topbar = ({ title, subtitle, workflowId, hideButton = false, isPublished = false }: Props) => {
   const router = useRouter()
+
   return (
     <header className='border-b p-2 border-separate flex items-center justify-between w-full h-[60px] sticky top-0 z-10 bg-white'>
       <div className="flex gap-1 ">
@@ -38,8 +41,14 @@ const Topbar = ({ title, subtitle, workflowId, hideButton = false }: Props) => {
         <div className="flex gap-1 flex-1 justify-end">
           {hideButton === false && (
             <>
-              <SaveButton workflowId={workflowId} />
               <ExecuteButton workflowId={workflowId} />
+              {!isPublished && (
+                <>
+                  <SaveButton workflowId={workflowId} />
+                  <PublishButton workflowId={workflowId} />
+                </>
+              )}
+
             </>
           )}
         </div>
