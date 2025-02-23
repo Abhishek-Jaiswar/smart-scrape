@@ -3,7 +3,13 @@ import { auth } from '@clerk/nextjs/server';
 import React from 'react';
 import Editor from '../../_components/Editor';
 
-async function Page({ params }: { params: { workflowId: string } }) {
+type PageProps = {
+    params: {
+        workflowId: string
+    }
+}
+
+async function Page({ params }: PageProps) {
     const { userId } = await auth()
 
     if (!userId) {
