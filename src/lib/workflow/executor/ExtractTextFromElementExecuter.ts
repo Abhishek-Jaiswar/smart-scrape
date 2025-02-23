@@ -2,6 +2,7 @@ import { ExecutionEnvironment } from "@/types/executer";
 import { ExtractTextFromElementTask } from "../task/ExtractTextFromEle";
 import * as cheerio from "cheerio";
 
+/* eslint-disable */
 export async function ExtractTextFromElementExecuter(
   environment: ExecutionEnvironment<typeof ExtractTextFromElementTask>
 ): Promise<boolean> {

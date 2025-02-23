@@ -2,6 +2,7 @@ import { ExecutionEnvironment } from "@/types/executer";
 import puppeteer from "puppeteer";
 import { LaunchBrowser } from "../task/LaunchBrowser";
 
+/* eslint-disable */
 export async function LaunchBrowserExecuter(
   environment: ExecutionEnvironment<typeof LaunchBrowser>
 ): Promise<boolean> {

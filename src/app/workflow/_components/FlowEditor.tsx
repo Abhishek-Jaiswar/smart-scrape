@@ -11,7 +11,6 @@ import React, { useCallback, useEffect } from "react"
 import { AppNode } from "@/types/appNode"
 import DeletableEdge from "./edges/DeletableEdge"
 import { TaskRegistry } from "@/lib/workflow/task/registry"
-import { toast } from "sonner"
 
 const nodeTypes = {
     SmartScrapeNode: NodeComponent
@@ -41,7 +40,7 @@ const FlowEditor = ({ workflow }: { workflow: PrismaWorkflow }) => {
             const { x = 0, y = 0, zoom = 1 } = flow.viewport
             setViewport({ x, y, zoom })
         } catch (error) {
-
+            console.log("error in flow editor");
         }
     }, [workflow.definition, setEdges, setNodes, setViewport])
 

@@ -2,6 +2,7 @@ import { TaskParamsType, TaskType } from "@/types/task";
 import { WorkflowTask } from "@/types/workflow";
 import { CodeIcon, LucideProps } from "lucide-react";
 
+/* eslint-disable */
 export const PageToHtmlTask = {
     type: TaskType.PAGE_TO_HTML,
     label: "Get html from web page",

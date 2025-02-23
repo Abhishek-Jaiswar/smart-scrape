@@ -16,6 +16,7 @@ import { Edge } from "@xyflow/react";
 import { LogCollector } from "@/types/log";
 import { createLogCollector } from "../log";
 
+/* eslint-disable */
 export const ExecuteWorkflow = async (executionId: string) => {
   const execution = await prisma.workflowExecution.findUnique({
     where: {

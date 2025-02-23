@@ -25,7 +25,7 @@ const DeletableEdge = (props: EdgeProps) => {
                         variant={"outline"}
                         size={"icon"}
                         onClick={() => {
-                            setEdges((edges: any[]) => edges.filter((edge) => edge.id !== props.id))
+                            setEdges((edges) => edges.filter((edge) => edge.id !== props.id))
                         }}
                         className='w-5 h-5 border cursor-pointer rounded-full text-xs leading-none hover:shadow-lg'
                     >

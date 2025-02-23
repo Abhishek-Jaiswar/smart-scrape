@@ -59,7 +59,7 @@ const DeleteWorkflowDialog = ({ open, setOpen, workflowName, workflowId }: Props
                     <AlertDialogCancel onClick={() => setConfirmName("")} >Cancel</AlertDialogCancel>
                     <AlertDialogAction
                         disabled={confirmName !== workflowName || deleteMutations.isPending}
-                        onClick={(_e: any) => {
+                        onClick={() => {
                             toast.loading("Deleting workflow...", { id: workflowId })
                             deleteMutations.mutate(workflowId)
                         }}

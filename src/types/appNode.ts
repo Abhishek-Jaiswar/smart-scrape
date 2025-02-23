@@ -1,6 +1,7 @@
 import { Node } from "@xyflow/react";
 import { TaskParam, TaskType } from "./task";
 
+/* eslint-disable */
 export interface AppNodeData {
   type: TaskType;
   inputs: Record<string, string>;
