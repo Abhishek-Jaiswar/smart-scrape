@@ -12,6 +12,7 @@ import {
   WorkflowStatus,
 } from "@/types/workflow";
 import { auth } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 export const RunWorkflow = async (form: {
   workflowId: string;
@@ -39,11 +40,13 @@ export const RunWorkflow = async (form: {
   }
 
   let executionPlan: WorkflowExecutionPlan;
+  let workflowDefinition = flowDefinition;
   if (workflow.status === WorkflowStatus.PUBLISHED) {
     if (!workflow.excutionPlan) {
       throw new Error("No execution plan found in published workflow");
     }
     executionPlan = JSON.parse(workflow.excutionPlan);
+    workflowDefinition = workflow.definition;
   } else {
     // workflow is draft
     if (!flowDefinition) {
@@ -71,7 +74,7 @@ export const RunWorkflow = async (form: {
       status: WorkflowExecutionStatus.PENDING,
       startedAt: new Date(),
       trigger: WorkflowExecutionTrigger.MANUAL,
-      definition: flowDefinition,
+      definition: workflowDefinition,
       phases: {
         create: executionPlan.flatMap((phase) => {
           return phase.nodes.flatMap((node) => {
@@ -98,6 +101,7 @@ export const RunWorkflow = async (form: {
   }
 
   ExecuteWorkflow(execution.id);
+  revalidatePath(`/workflow/runs`);
 
   return execution.id;
 };

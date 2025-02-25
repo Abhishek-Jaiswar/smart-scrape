@@ -68,7 +68,6 @@ export const ExecuteWorkflow = async (executionId: string) => {
   );
 
   await cleanUpEnvironment(environment);
-  revalidatePath("/workflow/runs");
 };
 
 async function initilizeWorkflowExecution(
@@ -235,7 +234,7 @@ async function executePhase(
   }
 
   // await waitFor(4000);
-  
+
   const executionEnvironment: ExecutionEnvironment<any> =
     createExecutionEnvironment(node, environment, logCollector);
 
