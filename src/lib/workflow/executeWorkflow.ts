@@ -146,7 +146,7 @@ async function finilizeWorkflowExecution(
         lastRunId: executionId,
       },
       data: {
-        lastRunAt: finalStatus,
+        lastRunStatus: finalStatus,
       },
     })
     .catch(() => {
