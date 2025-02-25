@@ -24,6 +24,7 @@ import { Badge } from '@/components/ui/badge'
 import ExecutionStatusIndicator, { ExecutionStatusLabel } from '@/app/workflow/runs/[workflowId]/_components/ExecutionStatusIndicator'
 import { format, formatDistanceToNow } from 'date-fns'
 import { formatInTimeZone } from 'date-fns-tz'
+import DuplicateWorkflowDialog from './DuplicateWorkflowDialog'
 
 const statusColors = {
     [WorkflowStatus.DRAFT]: "bg-yellow-500 text-yellow-800",
@@ -33,7 +34,7 @@ const statusColors = {
 const WorkflowCard = ({ workflow }: { workflow: workflow }) => {
     const isDraft = workflow.status === WorkflowStatus.DRAFT
     return (
-        <Card className='border border-separate shadow-sm rounded-sm overflow-hidden hover:shadow-md dark:shadow-primary/30'>
+        <Card className=' border border-separate shadow-sm rounded-sm overflow-hidden hover:shadow-md dark:shadow-primary/30 group/card'>
             <CardContent className=' p-4 flex items-center justify-between h-[100px]'>
                 <div className='flex items-center justify-end'>
 
@@ -46,16 +47,21 @@ const WorkflowCard = ({ workflow }: { workflow: workflow }) => {
                     </div>
                     <div className=" px-3 space-y-1">
                         <h1 className='text-base font-bold text-muted-foreground flex items-center'>
-                            <Link href={`/workflow/editor/${workflow.id}`}
-                                className='flex items-center hover:underline'
-                            >
-                                {workflow.name}
-                            </Link>
+                            <ToolTipWrapper content={workflow.description}>
+
+                                <Link href={`/workflow/editor/${workflow.id}`}
+                                    className='flex items-center hover:underline'
+                                >
+                                    {workflow.name}
+                                </Link>
+                            </ToolTipWrapper>
                             {isDraft && (
                                 <span className='ml-2 px-2 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full border border-yellow-500'>
                                     Draft
                                 </span>
                             )}
+
+                            <DuplicateWorkflowDialog workflowId={workflow.id} />
                         </h1>
                         <ScheduleSection
                             isDraft={isDraft}

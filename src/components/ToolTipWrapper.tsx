@@ -15,18 +15,19 @@ interface Props {
 }
 
 const ToolTipWrapper = (props: Props) => {
-  return (
-    <TooltipProvider delayDuration={0}>
-        <Tooltip>
-            <TooltipTrigger asChild>
-                {props.children}
-            </TooltipTrigger>
-            <TooltipContent side={props.side}>
-                {props.content}
-            </TooltipContent>
-        </Tooltip>
-    </TooltipProvider>
-  )
+    if (!props.content) return props.children;
+    return (
+        <TooltipProvider delayDuration={0}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    {props.children}
+                </TooltipTrigger>
+                <TooltipContent side={props.side}>
+                    {props.content}
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+    )
 }
 
 export default ToolTipWrapper
