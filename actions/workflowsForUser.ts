@@ -15,5 +15,4 @@ export const GetUserWorkflows = async () => {
                 createdAt: "asc"
             }
         })
-   
 }

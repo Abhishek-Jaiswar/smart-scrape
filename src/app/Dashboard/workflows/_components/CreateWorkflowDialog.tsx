@@ -17,6 +17,7 @@ import { useMutation } from "@tanstack/react-query"
 import { CreateWorkflow } from "../../../../../actions/createWorkflow"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { revalidatePath } from "next/cache"
 
 const createWorkflowSchema = z.object({
     name: z.string().min(1, "Name is required"),

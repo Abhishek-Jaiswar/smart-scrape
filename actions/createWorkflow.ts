@@ -11,6 +11,7 @@ import { AppNode } from "@/types/appNode";
 import { Edge } from "@xyflow/react";
 import { CreateFlowNode } from "@/lib/workflow/createFlowNode";
 import { TaskType } from "@/types/task";
+import { revalidatePath } from "next/cache";
 
 export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
   const { success, data } = createWorkflowSchema.safeParse(form);
@@ -45,5 +46,6 @@ export const CreateWorkflow = async (form: createWorkflowSchemaType) => {
     throw new Error("Failed to create workflow");
   }
 
+  revalidatePath("/workflows");
   return result;
 };
