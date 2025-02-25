@@ -1,18 +1,28 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)', '/forum(.*)'])
+// Define explicitly public routes
+const isPublicRoute = createRouteMatcher([
+  "/", // Landing page is public
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/api/workflows/(.*)*",
+]);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) await auth.protect();
+  // Protect all routes except explicitly public ones
+  if (!isPublicRoute(req)) {
+    await auth.protect();
+  }
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
+    // Exclude Next.js internals & static files
     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
-    // Always run for API routes
-    "/(api|trpc)(.*)",
-    // Protect the dashboard route
-    "/dashboard(.*)",
+
+    // Protect only specific sections
+    "/dashboard(.*)", // Protect the dashboard
+    "/forum(.*)", // (Optional) Protect the forum if needed
+    "/api/trpc/(.*)", // Protect all tRPC API routes
   ],
 };
