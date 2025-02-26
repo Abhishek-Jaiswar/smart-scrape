@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { GetWorkflowExecutionWithPhase } from '../../../../../../../actions/getWorkflowExecutionWithPhase'
 import { useQuery } from '@tanstack/react-query';
 import { ExecutionPhaseStatus, WorkflowExecutionStatus } from '@/types/workflow';
-import { CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2Icon, LucideIcon,  WorkflowIcon } from 'lucide-react';
+import { CalendarIcon, CircleDashedIcon, ClockIcon, CoinsIcon, Loader2Icon, LucideIcon, WorkflowIcon } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns'
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
@@ -49,7 +49,7 @@ const ExecutionViewer = ({ initialData }: { initialData: ExecutionData }) => {
     })
 
     const phaseDetails = useQuery({
-        queryKey: ["phaseDetails", selectedPhase],
+        queryKey: ["phaseDetails", selectedPhase, query.data?.status],
         enabled: selectedPhase !== null,
         queryFn: () => GetWorkflowPhaseDetails(selectedPhase!)
     })
