@@ -14,7 +14,7 @@ import { TaskType } from "@/types/task"
 const TaskMenu = () => {
     return (
         <aside className='w-[250px] min-w-[250px] max-w-[250px] border-r-2 border-separate h-full p-1 px-4 overflow-auto'>
-            <Accordion type="multiple" className="w-full" defaultValue={["extraction", "interactions", "timing"]}>
+            <Accordion type="multiple" className="w-full" defaultValue={["extraction", "interactions", "timing", "results"]}>
 
                 <AccordionItem value="interactions" >
                     <AccordionTrigger className="font-bold">
@@ -43,6 +43,15 @@ const TaskMenu = () => {
                     <AccordionContent className="flex flex-col gap-1">
                         <TaskMenuBtn taskType={TaskType.WAIT_FOR_ELEMENT} />
                         {/* <TaskMenuBtn taskType={TaskType.Delay} /> */}
+                    </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="results" >
+                    <AccordionTrigger className="font-bold">
+                        Timing controls
+                    </AccordionTrigger>
+                    <AccordionContent className="flex flex-col gap-1">
+                        <TaskMenuBtn taskType={TaskType.DELIVER_VIA_WEBHOOK} />
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
