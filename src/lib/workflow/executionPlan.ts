@@ -38,6 +38,8 @@ export function FlowToExecutionPlan(
 
   const inputsWithErrors: AppNodeMissingInputs[] = [];
 
+  //Algorithm to collect nodes and edges
+
   const planned = new Set<string>();
 
   const invalidInputs = getInvalidInputs(entryPoint, edges, planned);
