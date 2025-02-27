@@ -7,6 +7,7 @@ import Image from 'next/image'
 import CreateWorkflow from './_components/CreateWorkflowDialog'
 import WorkflowCard from './_components/WorkflowCard'
 
+
 const page = () => {
   return (
     <div className="flex-1 flex flex-col h-full">
