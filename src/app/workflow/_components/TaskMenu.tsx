@@ -14,7 +14,7 @@ import { TaskType } from "@/types/task"
 const TaskMenu = () => {
     return (
         <aside className='w-[250px] min-w-[250px] max-w-[250px] border-r-2 border-separate h-full p-1 px-4 overflow-auto'>
-            <Accordion type="multiple" className="w-full" defaultValue={["extraction", "interactions", "timing", "results"]}>
+            <Accordion type="multiple" className="w-full" defaultValue={["extraction", "interactions", "timing", "results", "storage"]}>
 
                 <AccordionItem value="interactions" >
                     <AccordionTrigger className="font-bold">
@@ -43,6 +43,7 @@ const TaskMenu = () => {
                     </AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-1">
                         <TaskMenuBtn taskType={TaskType.READ_PROPERTY_FROM_JSON} />
+                        <TaskMenuBtn taskType={TaskType.ADD_PROPERTY_TO_JSON} />
                     </AccordionContent>
                 </AccordionItem>
 

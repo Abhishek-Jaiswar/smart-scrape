@@ -243,8 +243,6 @@ async function executePhase(
     return false;
   }
 
-  // await waitFor(4000);
-
   const executionEnvironment: ExecutionEnvironment<any> =
     createExecutionEnvironment(node, environment, logCollector);
 
