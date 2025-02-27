@@ -6,14 +6,16 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { TaskRegistry } from "@/lib/workflow/task/registry"
 import { TaskType } from "@/types/task"
+import { CoinsIcon } from "lucide-react"
 
 
 const TaskMenu = () => {
     return (
-        <aside className='w-[250px] min-w-[250px] max-w-[250px] border-r-2 border-separate h-full p-1 px-4 overflow-auto'>
+        <aside className='w-[300px] min-w-[300px] max-w-[300px] border-r-2 border-separate h-full p-1 px-4 overflow-auto'>
             <Accordion type="multiple" className="w-full" defaultValue={["extraction", "interactions", "timing", "results", "storage"]}>
 
                 <AccordionItem value="interactions" >
@@ -21,8 +23,10 @@ const TaskMenu = () => {
                         User interaction
                     </AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-1">
+                        <TaskMenuBtn taskType={TaskType.NAVIGATE_URL} />
                         <TaskMenuBtn taskType={TaskType.FILL_INPUT} />
                         <TaskMenuBtn taskType={TaskType.CLICK_ELEMENT} />
+                        <TaskMenuBtn taskType={TaskType.SCROLL_TO_ELEMENT} />
                     </AccordionContent>
                 </AccordionItem>
 
@@ -59,7 +63,7 @@ const TaskMenu = () => {
 
                 <AccordionItem value="results" >
                     <AccordionTrigger className="font-bold">
-                        Timing controls
+                        Result delivery
                     </AccordionTrigger>
                     <AccordionContent className="flex flex-col gap-1">
                         <TaskMenuBtn taskType={TaskType.DELIVER_VIA_WEBHOOK} />
@@ -79,11 +83,17 @@ const TaskMenuBtn = ({ taskType }: { taskType: TaskType }) => {
     }
 
     return (
-        <Button variant={"secondary"} className="flex items-center justify-start gap-2 border w-full"
+        <Button variant={"secondary"} className="flex items-center justify-between gap-2 border w-full"
             draggable
             onDragStart={event => onDragStart(event, taskType)}>
-            <task.icon size={20} />
-            {task.label}
+            <div className="flex gap-2">
+                <task.icon size={16} />
+                <p className="text-xs">{task.label}</p>
+            </div>
+            <Badge className="gap-2 flex items-center" variant={"outline"}>
+                <CoinsIcon size={16} />
+                <p className="text-xs">{task.credits}</p>
+            </Badge>
         </Button>
     )
 }
