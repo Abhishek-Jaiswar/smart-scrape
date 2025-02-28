@@ -1,23 +1,23 @@
 "use client";
 
 import React from "react";
-import { GetWorkflowExecutionStats } from "../../../../actions/analytics/getWorkflowExecutionStats";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AreaChart, Area } from "recharts";
+import { AreaChart, Area, BarChart, Bar } from "recharts";
 import { ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { CartesianGrid, XAxis, YAxis } from "recharts";
-import { Layers2Icon } from "lucide-react";
+import { ChartColumnStackedIcon, Layers2Icon } from "lucide-react";
+import { GetCreditsUsageInPeriod } from "../../../../../actions/analytics/getCreditsUsageInPeriod";
 
-type ChartData = Awaited<ReturnType<typeof GetWorkflowExecutionStats>>;
+type ChartData = Awaited<ReturnType<typeof GetCreditsUsageInPeriod>>;
 
-const ExecutionStatusChart = ({ data }: { data: ChartData }) => {
+const CreditsUsageChart = ({ title, description, data }: { title: string, description: string, data: ChartData }) => {
     const chartConfig = {
         success: {
-            label: "Success",
+            label: "Successfull Phases Credits",
             color: "hsl(var(--chart-2))",
         },
         failed: {
-            label: "Failed",
+            label: "Failed Phases Credits",
             color: "hsl(var(--chart-1))",
         },
     };
@@ -26,15 +26,15 @@ const ExecutionStatusChart = ({ data }: { data: ChartData }) => {
         <Card>
             <CardHeader>
                 <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                    <Layers2Icon className="w-6 h-6 text-primary" />
-                    Workflow Execution Status
+                    <ChartColumnStackedIcon className="w-6 h-6 text-primary" />
+                    {title}
                 </CardTitle>
-                <CardDescription>Daily number of successful and failed executions.</CardDescription>
+                <CardDescription>{description}</CardDescription>
             </CardHeader>
             <CardContent>
                 <ChartContainer config={chartConfig} className="max-h-[300px] w-full">
 
-                    <AreaChart data={data}>
+                    <BarChart data={data}>
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis
                             dataKey="date"
@@ -53,30 +53,29 @@ const ExecutionStatusChart = ({ data }: { data: ChartData }) => {
                         <ChartLegend content={<ChartLegendContent />} />
                         <ChartTooltip content={<ChartTooltipContent className="w-[250px]" />} />
 
-                        <Area
-                            min={0}
-                            type="bump"
+                        <Bar
                             dataKey="success"
-                            fillOpacity={0.6}
+                            fillOpacity={0.8}
                             stroke={chartConfig.success.color}
                             fill={chartConfig.success.color}
                             stackId={'a'}
+                            radius={[0, 0, 4, 4]}
                         />
 
-                        <Area
-                            type="bump"
+                        <Bar
                             dataKey="failed"
                             stroke={chartConfig.failed.color}
                             fill={chartConfig.failed.color}
-                            fillOpacity={0.6}
+                            fillOpacity={0.8}
                             stackId={'a'}
+                            radius={[4, 4, 0, 0]}
 
                         />
-                    </AreaChart>
+                    </BarChart>
                 </ChartContainer>
             </CardContent>
         </Card>
     );
 };
 
-export default ExecutionStatusChart;
+export default CreditsUsageChart;

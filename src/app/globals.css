@@ -96,3 +96,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+.react-flow__attribution {
+  background: transparent !important;
+}
+
+.dark {
+  .react-flow__controls-button {
+    @apply !bg-accent;
+    @apply !text-neutral-300;
+  }
+}
