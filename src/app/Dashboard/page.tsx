@@ -6,10 +6,12 @@ import { GetStatsCardValues } from '../../../actions/analytics/getStatsCardValue
 import { GetPeriods } from '../../../actions/analytics/getPeriods';
 import { CirclePlayIcon, CoinsIcon, WaypointsIcon } from 'lucide-react';
 import StatsCard from './_components/StatsCard';
+import { GetWorkflowExecutionStats } from '../../../actions/analytics/getWorkflowExecutionStats';
+import ExecutionStatusChart from './_components/ExecutionStatusChart';
 
-const Dashboard = async ({ searchParams }: { searchParams: { month?: string, year?: string } }) => {
+const Dashboard = async ({ searchParams }: { searchParams?: { month?: string, year?: string } }) => {
     const currentDate = new Date();
-    const { month, year } = await searchParams;
+    const { month, year } = await searchParams!;
     const period: Period = {
         month: month ? parseInt(month) : currentDate.getMonth(),
         year: year ? parseInt(year) : currentDate.getFullYear()
@@ -27,6 +29,10 @@ const Dashboard = async ({ searchParams }: { searchParams: { month?: string, yea
             <div className='h-full py-6 flex flex-col gap-4'>
                 <Suspense fallback={<StatsCardSkeleton />}>
                     <StatsCards selectedPeriod={period} />
+                </Suspense>
+
+                <Suspense fallback={<Skeleton className='w-full h-[300px]' />}>
+                    <StatsExecutionStatus selectedPeriod={period} />
                 </Suspense>
             </div>
 
@@ -72,6 +78,14 @@ const StatsCardSkeleton = () => {
                 <Skeleton key={i} className='w-full min-h-[120px]' />
             ))}
         </div>
+    )
+}
+
+
+async function StatsExecutionStatus({ selectedPeriod }: { selectedPeriod: Period }) {
+    const data = await GetWorkflowExecutionStats(selectedPeriod)
+    return (
+        <ExecutionStatusChart data={data} />
     )
 }
 
