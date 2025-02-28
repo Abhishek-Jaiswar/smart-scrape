@@ -2,17 +2,28 @@ import React from 'react'
 import { MobileSidebar, DesktopSidebar } from '@/components/DesktopSidebar'
 import BreadcrumbHeader from '@/components/BreadcrumbHeader'
 import { ModeToggle } from '@/components/ThemeModeToggle'
+import { UserButton } from '@clerk/nextjs'
 
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className='flex h-screen'>
             <DesktopSidebar />
             <div className='flex flex-col flex-1 min-h-screen'>
-                <header className=' h-[52px] container px-4 py-2'>
+                <header className=' h-[52px] flex items-center justify-between container px-4 py-2'>
                     <MobileSidebar />
-                    <div className=' flex items-center justify-between'>
+                    <div className=' flex flex-1'>
                         <BreadcrumbHeader />
-                        <ModeToggle />
+                    </div>
+                    <div className=' flex items-center gap-3'>
+                        <ModeToggle style='rounded-full' />
+                        <UserButton appearance={{
+                            elements: {
+                                userButtonAvatarBox: {
+                                    height: "35px",
+                                    width: "35px"
+                                }
+                            }
+                        }} />
                     </div>
                 </header>
                 <hr />

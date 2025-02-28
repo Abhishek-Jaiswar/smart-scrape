@@ -71,15 +71,15 @@ export const MobileSidebar = () => {
     const activeRoute = routes.find((route) => route.href.length && pathName.includes(route.href)) || routes[0]
 
     return (
-        <div className="block border-separate bg-background">
+        <div className="block bg-background border-separate">
             <nav className="container flex items-center justify-between">
                 <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                    <SheetTrigger className="md:hidden block" asChild>
-                        <Button variant={"ghost"} size={"icon"}>
+                    <SheetTrigger asChild>
+                        <Button variant="ghost" size="icon" className="md:hidden">
                             <MenuIcon />
                         </Button>
                     </SheetTrigger>
-                    <SheetContent className="w-[300px] sm:w-[340px] space-y-4" side={"left"}>
+                    <SheetContent side="left" className="w-[300px] sm:w-[340px] space-y-4">
                         <SheetTitle className="hidden">Are you absolutely sure?</SheetTitle>
                         <div className="mt-4 flex flex-col gap-2">
                             <Logo />
@@ -91,9 +91,11 @@ export const MobileSidebar = () => {
                                     key={route.id}
                                     href={`/dashboard/${route.href}`}
                                     className={buttonVariants({
-                                        variant: activeRoute.href === route.href ? "sidebarItemActive" : "sidebarItem",
+                                        variant: activeRoute?.href === route.href
+                                            ? "sidebarItemActive"
+                                            : "sidebarItem",
                                     })}
-                                    onClick={() => setIsOpen(prev => !prev)}
+                                    onClick={() => setIsOpen(false)} // Properly closes sidebar
                                 >
                                     <route.icon size={20} />
                                     {route.label}

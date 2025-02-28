@@ -53,15 +53,15 @@ const Header = () => {
                 <div className="hidden md:flex items-center gap-5">
                     {isSignedIn ? (
                         <div className="flex items-center justify-center gap-7">
-                            <ModeToggle />
+                            <ModeToggle variant="default" />
                             <Link
                                 href="/dashboard"
-                                className="px-3 py-1.5 bg-rose-500 dark:bg-rose-400 rounded-md font-medium text-white hover:bg-rose-400 dark:hover:bg-rose-300 transition-colors"
+                                className="px-3 py-1.5 bg-primary dark:bg-rose-400 rounded-md font-medium text-white hover:bg-rose-400 dark:hover:bg-rose-300 transition-colors"
                             >
                                 Dashboard
                             </Link>
                             <div className="flex items-center justify-center">
-                                <UserButton />
+                                
                             </div>
                         </div>
                     ) : (
