@@ -18,12 +18,11 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    // Exclude Next.js internals & static files
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/((?!_next|public|images|uploads|api/webhook/stripe|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
 
-    // Protect only specific sections
-    "/dashboard(.*)", // Protect the dashboard
-    "/forum(.*)", // (Optional) Protect the forum if needed
-    "/api/trpc/(.*)", // Protect all tRPC API routes
+    // Protect specific sections
+    "/dashboard(.*)", // Protect dashboard pages
+    "/forum(.*)", // (Optional) Protect forum pages
+    "/api/trpc/(.*)", // Protect tRPC API routes
   ],
 };

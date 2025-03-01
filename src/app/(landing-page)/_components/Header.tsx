@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
-import { useAuth } from "@clerk/nextjs"
+import { SignOutButton, useAuth } from "@clerk/nextjs"
 import { ModeToggle } from "@/components/ThemeModeToggle"
 import { Button } from "@/components/ui/button"
 import Logo from "@/components/Logo"
@@ -48,6 +48,13 @@ const Header = () => {
                     {isSignedIn ? (
                         <div className="flex items-center justify-center gap-7">
                             <ModeToggle variant="default" />
+                            <Button
+                                variant={"outline"}
+                                className=" bg-primary text-white hover:bg-primary/90 hover:text-white "
+                            >
+
+                                <SignOutButton />
+                            </Button>
                             <Link
                                 href="/dashboard"
                             >
@@ -66,15 +73,18 @@ const Header = () => {
                         </div>
                     ) : (
                         <>
-                            <Link href="/sign-in" className="text-neutral-950 dark:text-neutral-50 font-medium hover:text-rose-500 dark:hover:text-rose-400 transition-colors">
-                                Sign in
-                            </Link>
-                            <Link
-                                href="/sign-up"
-                                className="px-3 py-1.5 bg-rose-500 dark:bg-rose-400 rounded-md font-medium text-white hover:bg-rose-400 dark:hover:bg-rose-300 transition-colors"
-                            >
-                                Create free account
-                            </Link>
+                            <Button variant={'ghost'}>
+                                <Link href="/sign-in">
+                                    Sign in
+                                </Link>
+                            </Button>
+                            <Button className="bg-primary">
+                                <Link
+                                    href="/sign-up"
+                                >
+                                    Create free account
+                                </Link>
+                            </Button>
                         </>
                     )}
                 </div>
