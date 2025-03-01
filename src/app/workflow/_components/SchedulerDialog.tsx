@@ -12,7 +12,7 @@ import { toast } from 'sonner'
 import cronstrue from 'cronstrue'
 import parser from 'cron-parser'
 import { RemoveWorkflowSchedule } from '../../../../actions/removeWorkflowSchedule'
-import CustomHeader from '@/app/dashboard/workflows/_components/CustomHeader'
+import CustomHeader from '../../../app/dashboard/workflows/_components/CustomHeader'
 
 const SchedulerDialog = (props: { workflowId: string, cron: string | null }) => {
     const [cron, setCron] = useState(props.cron || "")
