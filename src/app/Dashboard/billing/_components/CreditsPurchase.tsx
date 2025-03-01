@@ -1,105 +1,144 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-import { CreditsPackage, PackageId } from "@/types/billing";
-import { CircleCheckIcon, CoinsIcon, CreditCardIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useMutation } from "@tanstack/react-query";
-import { PurchaseCredits } from "../../../../../actions/biling/purchaseCredits";
-import { useState } from "react";
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
+import { CreditsPackage } from "@/types/billing"
+import { CircleCheckIcon, CoinsIcon, CreditCardIcon, SparklesIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useMutation } from "@tanstack/react-query"
+import { PurchaseCredits } from "../../../../../actions/biling/purchaseCredits"
+import { toast } from "sonner"
 
 const CreditsPurchase = () => {
-    const [selectedPackage, setSelectePackage] = useState(PackageId.MEDIUM)
     const mutation = useMutation({
         mutationFn: PurchaseCredits,
         onSuccess: () => {
-
+            toast.success("Purchase complete! Enjoy your credits!", { id: "purchase" })
         },
         onError: () => {
-
-        }
-
+            toast.error("Something went wrong with your purchase", { id: "purchase" })
+        },
     })
 
     return (
-        <Card className="shadow-lg border rounded-xl p-6 bg-white">
-            <CardHeader>
-                <CardTitle className="text-2xl font-bold flex items-center gap-2 text-gray-900">
-                    <CoinsIcon className="w-6 h-6 text-primary" />
-                    Purchase Credits
-                </CardTitle>
-                <CardDescription className="text-gray-600">
-                    Select the number of credits you want to purchase and proceed to checkout.
-                </CardDescription>
+        <Card className="shadow-xl border-0 rounded-xl overflow-hidden bg-background">
+            <CardHeader className="pb-4 border-b">
+                <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-full bg-primary/10">
+                        <CoinsIcon className="w-7 h-7 text-primary" />
+                    </div>
+                    <div>
+                        <CardTitle className="text-2xl font-bold">Purchase Credits</CardTitle>
+                        <CardDescription>Select a package that suits your needs and boost your experience</CardDescription>
+                    </div>
+                </div>
             </CardHeader>
-            <CardContent>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <CardContent className="p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {CreditsPackage.map((pack) => {
-                        const best = pack.bestValue;
+                        const best = pack.bestValue
+                        const discount = Math.round((1 - pack.discountedPrice! / pack.price) * 100)
+
                         return (
-                            <div
-                                key={pack.id}
-                                className={cn(
-                                    `relative shadow-md border rounded-xl transition-all duration-300 p-6 hover:shadow-xl`,
-                                    best && "border-2 border-primary bg-white"
-                                )}
-                            >
+                            <div key={pack.id} className={cn("relative group h-full", best ? "z-10" : "")}>
+                                <div
+                                    className={cn(
+                                        "absolute inset-0 rounded-xl transition-all duration-300",
+                                        best
+                                            ? "bg-gradient-to-b from-primary/20 to-primary/5 dark:from-primary/30 dark:to-primary/10 shadow-lg"
+                                            : "bg-card shadow-md group-hover:shadow-lg",
+                                    )}
+                                />
+
                                 {best && (
-                                    <Badge className="absolute -top-2 left-[8.5rem] bg-primary text-white rounded-full ">
-                                        Most Popular
-                                    </Badge>
+                                    <div className="absolute -top-3 inset-x-0 flex justify-center z-10">
+                                        <Badge className="px-3 py-1 bg-primary text-primary-foreground font-medium rounded-full shadow-md">
+                                            <SparklesIcon className="w-3.5 h-3.5 mr-1" />
+                                            Most Popular
+                                        </Badge>
+                                    </div>
                                 )}
-                                <CardHeader className="h-[120px] flex flex-col items-center text-center">
-                                    <div className="flex items-center gap-2">
-                                        <pack.icon size={30} className="text-primary" />
-                                        <CardTitle className="text-xl font-bold">{pack.name}</CardTitle>
-                                    </div>
-                                    <CardDescription className="text-gray-700">{pack.description}</CardDescription>
-                                </CardHeader>
-                                <CardContent className="text-center h-[200px]">
-                                    <div className="flex flex-col items-center">
-                                        <div className="flex items-end gap-2">
-                                            <p className="font-bold text-gray-400 line-through text-lg">₹{pack.price}/-</p>
-                                            <p className="text-2xl font-bold text-gray-900">₹{pack.discountedPrice}/-</p>
+
+                                <div
+                                    className={cn(
+                                        "relative z-10 h-full flex flex-col p-6 rounded-xl",
+                                        best ? "ring-2 ring-primary z-0" : "ring-1 ring-border group-hover:ring-primary/50",
+                                    )}
+                                >
+                                    <div className="mb-6 flex items-center gap-3">
+                                        <div className="p-2 rounded-full bg-primary/10">
+                                            <pack.icon size={22} className="text-primary" />
                                         </div>
-                                        <p className="text-lg font-bold text-gray-800">{pack.label}</p>
+                                        <div>
+                                            <h3 className="text-xl font-bold">{pack.name}</h3>
+                                            <p className="text-muted-foreground text-sm">{pack.description}</p>
+                                        </div>
                                     </div>
-                                    <div className="mt-4 space-y-2">
+
+                                    <div className="mb-6">
+                                        <div className="flex items-baseline gap-2">
+                                            <p className="text-3xl font-bold">₹{pack.discountedPrice}</p>
+                                            <div>
+                                                <p className="text-muted-foreground line-through text-sm">₹{pack.price}</p>
+                                                <p className="text-xs text-primary font-medium">Save {discount}%</p>
+                                            </div>
+                                        </div>
+                                        <p className="text-lg font-semibold mt-1">{pack.label}</p>
+                                    </div>
+
+                                    <div className="space-y-3 mb-6 flex-grow">
                                         {pack.features.map((feature, index) => (
-                                            <div key={index} className="flex items-center gap-2">
-                                                <CircleCheckIcon size={20} className="text-green-500" />
-                                                <p className="text-gray-700 text-sm font-medium">{feature}</p>
+                                            <div key={index} className="flex items-start gap-2">
+                                                <CircleCheckIcon
+                                                    size={18}
+                                                    className="text-green-500 dark:text-green-400 mt-0.5 flex-shrink-0"
+                                                />
+                                                <p className="text-muted-foreground text-sm">{feature}</p>
                                             </div>
                                         ))}
                                     </div>
 
-                                </CardContent>
-                                <CardFooter>
                                     <Button
-                                        onClick={() => {
-                                            mutation.mutate(pack.id)
-                                        }}
-                                        className="w-full mt-4 font-semibold transition-all duration-300 hover:scale-105">
-                                        <CreditCardIcon scale={25} />
-                                        Purchase credits
+                                        onClick={() => mutation.mutate(pack.id)}
+                                        disabled={mutation.isPending}
+                                        variant={best ? "default" : "outline"}
+                                        className={cn(
+                                            "w-full font-semibold transition-all duration-300",
+                                            best ? "bg-primary hover:bg-primary/90" : "",
+                                        )}
+                                    >
+                                        {mutation.isPending ? (
+                                            <div className="flex items-center gap-2">
+                                                <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                                                <span>Processing...</span>
+                                            </div>
+                                        ) : (
+                                            <div className="flex items-center gap-2">
+                                                <CreditCardIcon size={18} />
+                                                <span>Purchase Now</span>
+                                            </div>
+                                        )}
                                     </Button>
-                                </CardFooter>
+                                </div>
                             </div>
-                        );
+                        )
                     })}
                 </div>
             </CardContent>
-        </Card>
-    );
-};
 
-export default CreditsPurchase;
+            <CardFooter className="border-t p-6 flex justify-center">
+                <p className="text-sm text-muted-foreground">
+                    Need help choosing?{" "}
+                    <a href="#" className="text-primary hover:underline">
+                        Contact our support team
+                    </a>
+                </p>
+            </CardFooter>
+        </Card>
+    )
+}
+
+export default CreditsPurchase
+

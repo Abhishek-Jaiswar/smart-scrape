@@ -1,8 +1,8 @@
 import {
   BadgeSwissFrancIcon,
-  BellElectric,
   LucideIcon,
-  LucideTarget,
+  RocketIcon,
+  ZapIcon,
 } from "lucide-react";
 
 export enum PackageId {
@@ -22,7 +22,7 @@ export type CreditsPackage = {
   features: string[];
   icon: LucideIcon;
   bestValue?: boolean;
-  priceId: string
+  priceId: string;
 };
 
 export const CreditsPackage: CreditsPackage[] = [
@@ -35,9 +35,10 @@ export const CreditsPackage: CreditsPackage[] = [
     price: 299,
     discountedPrice: 249,
     features: [
-      "Access to basic workflows",
-      "Email support",
       "Valid for 30 days",
+      "Basic support",
+      "Standard processing speed",
+      "Access to basic features",
     ],
     icon: BadgeSwissFrancIcon,
     priceId: process.env.STRIPE_SMALL_PACKAGE_ID!,
@@ -51,11 +52,13 @@ export const CreditsPackage: CreditsPackage[] = [
     price: 999,
     discountedPrice: 849,
     features: [
-      "Priority email support",
-      "Early access to new features",
-      "Valid for 90 days",
+      "Valid for 60 days",
+      "Priority support",
+      "Faster processing speed",
+      "Access to premium features",
+      "Detailed analytics",
     ],
-    icon: BellElectric,
+    icon: ZapIcon,
     bestValue: true,
     priceId: process.env.STRIPE_MEDIUM_PACKAGE_ID!,
   },
@@ -63,17 +66,19 @@ export const CreditsPackage: CreditsPackage[] = [
     id: PackageId.LARGE,
     name: "Large Package",
     label: "10,000 Credits",
-    description: "Best for teams & power users, unlimited possibilities!",
+    description: "For power users",
     credits: 10000,
     price: 1999,
     discountedPrice: 1749,
     features: [
-      "Premium support (24/7)",
-      "Exclusive workflow optimizations",
-      "Valid for 180 days",
-      "Custom integration support",
+      "Valid for 90 days",
+      "24/7 dedicated support",
+      "Highest processing priority",
+      "Access to all features",
+      "Advanced analytics",
+      "Custom integrations",
     ],
-    icon: LucideTarget,
+    icon: RocketIcon,
     priceId: process.env.STRIPE_LARGE_PACKAGE_ID!,
   },
 ];
