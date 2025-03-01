@@ -22,6 +22,7 @@ export type CreditsPackage = {
   features: string[];
   icon: LucideIcon;
   bestValue?: boolean;
+  priceId: string
 };
 
 export const CreditsPackage: CreditsPackage[] = [
@@ -39,6 +40,7 @@ export const CreditsPackage: CreditsPackage[] = [
       "Valid for 30 days",
     ],
     icon: BadgeSwissFrancIcon,
+    priceId: process.env.STRIPE_SMALL_PACKAGE_ID!,
   },
   {
     id: PackageId.MEDIUM,
@@ -55,6 +57,7 @@ export const CreditsPackage: CreditsPackage[] = [
     ],
     icon: BellElectric,
     bestValue: true,
+    priceId: process.env.STRIPE_MEDIUM_PACKAGE_ID!,
   },
   {
     id: PackageId.LARGE,
@@ -71,6 +74,7 @@ export const CreditsPackage: CreditsPackage[] = [
       "Custom integration support",
     ],
     icon: LucideTarget,
+    priceId: process.env.STRIPE_LARGE_PACKAGE_ID!,
   },
 ];
 

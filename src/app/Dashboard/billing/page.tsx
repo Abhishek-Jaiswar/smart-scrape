@@ -1,10 +1,15 @@
 import React, { Suspense } from 'react'
 import { GetAvailableBalance } from '../../../../actions/biling/getAvailableCredits'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import ReactCountUpWrapper from '@/components/ReactCountUpWrapper'
-import { CoinsIcon } from 'lucide-react'
+import { ArrowLeftRightIcon, CoinsIcon } from 'lucide-react'
 import CreditsPurchase from './_components/CreditsPurchase'
+import { Period } from '@/types/analytics'
+import { GetCreditsUsageInPeriod } from '../../../../actions/analytics/getCreditsUsageInPeriod'
+import CreditsUsageChart from './_components/CreditsUsageChart'
+import { GetUserPurchaseHistory } from '../../../../actions/biling/getUserPurchaseHistory'
+import InvoiceBtn from './_components/InvoiceBtn'
 
 const page = () => {
   return (
@@ -16,6 +21,13 @@ const page = () => {
       </Suspense>
 
       <CreditsPurchase />
+      <Suspense fallback={<Skeleton className='h-[300px] w-full' />}>
+        <CreditsUsageCard />
+      </Suspense>
+
+      <Suspense fallback={<Skeleton className='h-[300px] w-full' />}>
+        <TransactionHistoryCard />
+      </Suspense>
     </div>
   )
 }
@@ -43,5 +55,69 @@ const BalanceCard = async () => {
   );
 }
 
+
+const CreditsUsageCard = async () => {
+  const period: Period = {
+    month: new Date().getMonth(),
+    year: new Date().getFullYear()
+  }
+
+  const data = await GetCreditsUsageInPeriod(period)
+  return <CreditsUsageChart
+    data={data}
+    title="Credits Consumed"
+    description='Daily credits consumed in the current month'
+  />
+}
+
+const TransactionHistoryCard = async () => {
+  const purchases = await GetUserPurchaseHistory();
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold flex items-center gap-2">
+          <ArrowLeftRightIcon className="h-6 w-6 text-primary" />
+          Transaction History
+        </CardTitle>
+        <CardDescription>
+          View your transaction history and download invoices
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {purchases.length === 0 && (
+          <p className="text-muted-foreground">No transactions yet</p>
+        )}
+        {purchases.map((purchase) => (
+          <div key={purchase.id} className='flex items-center justify-between py-3 border-b last:border-b-0'>
+            <div>
+              <p className='font-semibold'>{formatDate(new Date(purchase.date))}</p>
+              <p className='text-sm text-muted-foreground'>{purchase.description}</p>
+            </div>
+
+            <div className='text-right'>
+              <p className='font-medium'>{formatAmount(purchase.amount, purchase.currency)}</p>
+              <InvoiceBtn id={purchase.id} />
+            </div>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+};
+
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }).format(date);
+};
+
+const formatAmount = (amount: number, currency: string) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency
+  }).format(amount / 100)
+}
 
 export default page
