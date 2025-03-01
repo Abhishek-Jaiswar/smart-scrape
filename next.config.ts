@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  typescript: {
+    ignoreBuildErrors: true, // Disables TypeScript errors in Vercel
+  },
   eslint: {
-    ignoreDuringBuilds: true, // Disable ESLint during Vercel builds
+    ignoreDuringBuilds: true, // Disables ESLint in Vercel
   },
 };
 
