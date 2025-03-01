@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@/components/ui/dialog'
+import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { useMutation } from '@tanstack/react-query'
@@ -12,7 +12,6 @@ import { toast } from 'sonner'
 import cronstrue from 'cronstrue'
 import parser from 'cron-parser'
 import { RemoveWorkflowSchedule } from '../../../../actions/removeWorkflowSchedule'
-import CustomHeader from '../../../app/dashboard/workflows/_components/CustomHeader'
 
 const SchedulerDialog = (props: { workflowId: string, cron: string | null }) => {
     const [cron, setCron] = useState(props.cron || "")
@@ -76,10 +75,10 @@ const SchedulerDialog = (props: { workflowId: string, cron: string | null }) => 
                 </Button>
             </DialogTrigger>
             <DialogContent aria-describedby={undefined} className='px-0'>
-                <CustomHeader
-                    title='Schedule workflow execution'
-                    icon={Calendar1Icon}
-                />
+                <DialogHeader className='flex items-center gap-2'>
+                    <DialogTitle className=' text-2xl font-bold text-primary'>Schedule workflow execution</DialogTitle>
+                    <Calendar1Icon className='text-2xl text-primary' />
+                </DialogHeader>
                 <div className='p-6 space-y-4'>
                     <p className='text-muted-foreground text-sm'>Specify a cron expression to schedule periodic workflow execution</p>
                     <Input
