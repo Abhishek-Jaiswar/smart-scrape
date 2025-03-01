@@ -1,11 +1,12 @@
 "use client"
 
 import Link from "next/link"
-import { SiScratch } from "react-icons/si"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
-import { useAuth, UserButton } from "@clerk/nextjs"
+import { useAuth } from "@clerk/nextjs"
 import { ModeToggle } from "@/components/ThemeModeToggle"
+import { Button } from "@/components/ui/button"
+import Logo from "@/components/Logo"
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -17,18 +18,11 @@ const Header = () => {
         <section className="container mx-auto px-4 py-6">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                    <SiScratch className="text-4xl font-bold text-rose-500 dark:text-rose-400" aria-hidden="true" />
-                    <span className="text-xl tracking-wider text-neutral-950 dark:text-neutral-50 font-bold font-mono">SMARTSCRAPE</span>
+                    <Logo />
                 </div>
 
                 <nav className="hidden md:block">
                     <ul className="flex items-center justify-center gap-10">
-                        <Link
-                            href={"/Services"}
-                            className="text-neutral-950 dark:text-neutral-50 font-medium hover:text-rose-500 dark:hover:text-rose-400 transition-colors"
-                        >
-                            Services
-                        </Link>
                         <Link
                             href={"/docs"}
                             className="text-neutral-950 dark:text-neutral-50 font-medium hover:text-rose-500 dark:hover:text-rose-400 transition-colors"
@@ -36,10 +30,10 @@ const Header = () => {
                             Docs
                         </Link>
                         <Link
-                            href={"/pricing"}
+                            href={"/dashboard/billing"}
                             className="text-neutral-950 dark:text-neutral-50 font-medium hover:text-rose-500 dark:hover:text-rose-400 transition-colors"
                         >
-                            Pricing
+                            Billing
                         </Link>
                         <Link
                             href={"/help-center"}
@@ -56,12 +50,18 @@ const Header = () => {
                             <ModeToggle variant="default" />
                             <Link
                                 href="/dashboard"
-                                className="px-3 py-1.5 bg-primary dark:bg-rose-400 rounded-md font-medium text-white hover:bg-rose-400 dark:hover:bg-rose-300 transition-colors"
                             >
-                                Dashboard
+                                <Button
+                                    variant={"outline"}
+                                    className=" bg-primary text-white hover:bg-primary/90 hover:text-white "
+                                >
+
+                                    Dashboard
+                                </Button>
                             </Link>
+
                             <div className="flex items-center justify-center">
-                                
+
                             </div>
                         </div>
                     ) : (

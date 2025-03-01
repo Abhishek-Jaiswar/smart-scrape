@@ -32,7 +32,7 @@ const ExecutionsTable = ({ workflowId, initialData }: { workflowId: string, init
     })
 
     return (
-        <div className='border rounded-lg shadow-md overflow-auto w-[80%] mx-auto'>
+        <div className='border rounded-lg shadow-md overflow-auto max-w-7xl mx-auto'>
             <Table className='h-full'>
                 <TableHeader className='bg-muted'>
                     <TableRow>

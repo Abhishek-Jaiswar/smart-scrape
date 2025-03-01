@@ -4,7 +4,7 @@ import { IoCheckmarkDoneSharp } from "react-icons/io5";
 
 function Hero() {
     return (
-        <div className="min-h-screen  dark:bg-transparent">
+        <div className=" h-full dark:bg-transparent">
             <div className="container mx-auto px-4">
                 {/* Trust Indicators */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-7">
@@ -35,7 +35,7 @@ function Hero() {
                     </p>
 
                     {/* Features */}
-                    <div className="pb-10">
+                    <div className="pb-2">
                         <ul className="grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono">
                             <li className="text-neutral-950 dark:text-gray-200 font-bold text-lg flex items-center justify-center gap-2">
                                 <IoCheckmarkDoneSharp className="text-3xl text-rose-500 font-bold" />

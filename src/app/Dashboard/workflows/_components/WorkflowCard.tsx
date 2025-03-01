@@ -165,7 +165,7 @@ const LastRunDetails = ({ workflow }: { workflow: workflow }) => {
     if (isDraft) {
         return null
     }
-    const { lastRunAt, lastRunStatus, lastRunId, nextRunAt } = workflow
+    const { lastRunAt, lastRunStatus, lastRunId, nextRunAt, status } = workflow
     const formatedStartedAt = lastRunAt && formatDistanceToNow(lastRunAt, { addSuffix: true })
 
     const nextSchedule = nextRunAt && format(nextRunAt, "yyyy-MM-dd HH:mm");

@@ -59,7 +59,7 @@ const SchedulerDialog = (props: { workflowId: string, cron: string | null }) => 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant={"link"} size={'sm'} className={cn("text-sm p-0 h-auto text-orange-500", workflowHasValidCron && "text-primary")}>
+                <Button variant={"link"} size={'sm'} className={cn("text-sm p-0 h-auto text-orange-500", workflowHasValidCron && "text-green-400")}>
 
                     {workflowHasValidCron && (
                         <div className='flex items-center gap-2'>

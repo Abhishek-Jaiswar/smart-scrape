@@ -23,7 +23,7 @@ const Topbar = ({ title, subtitle, workflowId, hideButton = false, isPublished =
   const router = useRouter()
 
   return (
-    <header className='border-b p-2 border-separate flex items-center justify-between w-full h-[60px] sticky top-0 z-10 bg-white'>
+    <header className='border-b p-2 border-separate flex items-center justify-between w-full h-[60px] sticky top-0 z-10 bg-white dark:bg-transparent'>
       <div className="flex gap-1 ">
         <ToolTipWrapper content="Back">
           <Button variant={"ghost"} size={"icon"} onClick={() => router.back()}>
