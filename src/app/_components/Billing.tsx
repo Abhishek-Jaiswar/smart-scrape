@@ -8,7 +8,7 @@ import { CircleCheckIcon, CoinsIcon, CreditCardIcon, SparklesIcon } from "lucide
 import { Button } from "@/components/ui/button"
 import { useMutation } from "@tanstack/react-query"
 import { toast } from "sonner"
-import { PurchaseCredits } from "../../../../actions/biling/purchaseCredits"
+import { PurchaseCredits } from "../../../actions/biling/purchaseCredits"
 
 const Billing = () => {
     const mutation = useMutation({

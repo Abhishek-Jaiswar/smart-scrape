@@ -5,6 +5,5 @@
     },
     "src": "src",
     "use": "@vercel/next"
-  },
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  }
 }

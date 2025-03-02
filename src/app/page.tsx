@@ -1,14 +1,13 @@
 "use client"
 
 import React from "react"
-import Header from "../_components/Header"
-import Hero from "../_components/Hero"
-import Pricing from "../_components/Billing"
-import FAQs from "../_components/FAQs"
-import Features from "../_components/Features"
-import ShowCase from "../_components/ShowCase"
-import Footer from "../_components/Footer"
-
+import Hero from "./_components/Hero"
+import Header from "./_components/Header"
+import ShowCase from "./_components/ShowCase"
+import Features from "./_components/Features"
+import Billing from "./_components/Billing"
+import FAQs from "./_components/FAQs"
+import Footer from "./_components/Footer"
 
 const Home = () => {
     return (
@@ -28,7 +27,7 @@ const Home = () => {
                     <Features />
                 </section>
                 <section>
-                    <Pricing />
+                    <Billing />
                 </section>
                 <section className=" ">
                     <FAQs />
