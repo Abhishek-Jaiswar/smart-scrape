@@ -11,7 +11,7 @@ import ExecutionStatusChart from './_components/ExecutionStatusChart';
 import { GetCreditsUsageInPeriod } from '../../../actions/analytics/getCreditsUsageInPeriod';
 import CreditsUsageChart from './billing/_components/CreditsUsageChart';
 
-const Dashboard = async ({ searchParams }: { searchParams?: { month?: string, year?: string } }) => {
+const page = async ({ searchParams }: { searchParams?: { month?: string, year?: string } }) => {
     const currentDate = new Date();
     const { month, year } = await searchParams!;
     const period: Period = {
@@ -106,4 +106,4 @@ async function CreditsUsageInPeriod({ selectedPeriod }: { selectedPeriod: Period
     )
 }
 
-export default Dashboard
+export default page
