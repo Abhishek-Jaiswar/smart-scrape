@@ -9,7 +9,6 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhook/stripe",
   "/dashboard-light.png",
   "/dashboard-dark.png",
-  "/dashboard(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, req) => {
