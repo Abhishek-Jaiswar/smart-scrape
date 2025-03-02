@@ -2,7 +2,9 @@
   "build": {
     "env": {
       "NEXT_DISABLE_ESLINT": "1"
-    }
+    },
+    "src": "src",
+    "use": "@vercel/next"
   },
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
