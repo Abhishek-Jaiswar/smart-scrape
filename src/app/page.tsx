@@ -9,7 +9,7 @@ import Billing from "./_components/Billing"
 import FAQs from "./_components/FAQs"
 import Footer from "./_components/Footer"
 
-const Home = () => {
+const page = () => {
     return (
         <main className="min-h-screen  relative ">
             <div className={`absolute inset-0 dark:bg-neutral-900 grid-pattern  `}></div>
@@ -40,4 +40,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default page
